@@ -30,33 +30,22 @@ class Auth extends CI_Controller
       // cek usernya ada
       if ($user) {
          // jika user aktif
-         if ($user['is_active'] == 1) {
-            // cek password
-            if (password_verify($password, $user['password'])) {
-               $data = [
-                  'user_id' => $user['id'],
-                  'username' => $user['username'],
-                  'role_id' => $user['role_id']
-               ];
-               $this->session->set_userdata($data);
-               if ($user['role_id'] == 1) {
-                  redirect('dashboard');
-               } elseif ($user['role_id'] == 2) {
-                  redirect('dashboard');
-               } elseif ($user['role_id'] == 3) {
-                  redirect('user/home');
-               } elseif ($user['role_id'] == 6) {
-                  redirect('dashboard');
-               } else {
-                  $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> You are not allowed to access </div>');
-                  redirect('auth');
-               }
+         // cek password
+         if (password_verify($password, $user['password'])) {
+            $data = [
+               'user_id' => $user['id'],
+               'username' => $user['username'],
+               // 'role_id' => $user['role_id']
+            ];
+            $get_session = $this->session->set_userdata($data);
+            if ($get_session) {
+               redirect('dashboard');
             } else {
-               $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Wrong password! </div>');
+               $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> You are not allowed to access </div>');
                redirect('auth');
             }
          } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> This username has not been activated! </div>');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Wrong password! </div>');
             redirect('auth');
          }
       } else {

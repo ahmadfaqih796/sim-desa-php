@@ -14,12 +14,12 @@
                      <form action="<?= base_url('auth'); ?>" method="post">
                         <div class="mb-3">
                            <label for="username" class="form-label">Username</label>
-                           <input type="text" class="form-control" id="username" value="<?= set_value('username'); ?>">
+                           <input type="text" class="form-control" name="username" id="username" value="<?= set_value('username'); ?>">
                            <?= form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <div class="mb-4">
                            <label for="password" class="form-label">Password</label>
-                           <input type="password" class="form-control" id="password" value="<?= set_value('password'); ?>">
+                           <input type="password" class="form-control" name="password" id="password" value="<?= set_value('password'); ?>">
                         </div>
                         <!-- <div class="d-flex align-items-center justify-content-between mb-4">
                            <div class="form-check">

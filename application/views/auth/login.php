@@ -20,6 +20,7 @@
                         <div class="mb-4">
                            <label for="password" class="form-label">Password</label>
                            <input type="password" class="form-control" name="password" id="password" value="<?= set_value('password'); ?>">
+                           <?= form_error('password', '<small class="text-danger pl-3">', '</small>'); ?>
                         </div>
                         <!-- <div class="d-flex align-items-center justify-content-between mb-4">
                            <div class="form-check">

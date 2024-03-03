@@ -10,8 +10,7 @@ class Auth extends CI_Controller
    }
    public function index()
    {
-      $this->form_validation->set_rules('username', 'Username', 'trim|required');
-      $this->form_validation->set_rules('password', 'Password', 'trim|required');
+      $this->_validation("admin");
       if ($this->form_validation->run() == false) {
          $data['title'] = 'Login';
          $this->load->view('templates/auth/header', $data);
@@ -22,6 +21,18 @@ class Auth extends CI_Controller
       }
    }
 
+   private function _validation($role = null)
+   {
+      if ($role == "admin") {
+         $this->form_validation->set_rules('username', 'Username', 'trim|required', [
+            'required' => 'Username harus diisi'
+         ]);
+      }
+      $this->form_validation->set_rules('password', 'Password', 'trim|required', [
+         'required' => 'Password harus diisi'
+      ]);
+   }
+
    private function _login()
    {
       $username = $this->input->post('username');
@@ -29,28 +40,19 @@ class Auth extends CI_Controller
       $user = $this->db->get_where('users', ['username' => $username])->row_array();
       // cek usernya ada
       if ($user) {
-         // jika user aktif
          // cek password
          if (password_verify($password, $user['password'])) {
             $data = [
                'user_id' => $user['id'],
-               'username' => $user['username'],
-               // 'role_id' => $user['role_id']
+               'username' => $user['username']
             ];
-            $get_session = $this->session->set_userdata($data);
-            if ($get_session) {
-               redirect('dashboard');
-            } else {
-               $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> You are not allowed to access </div>');
-               redirect('auth');
-            }
+            $this->session->set_userdata($data);
+            $this->notification->notify_success('auth', 'Anda berhasil login');
          } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Wrong password! </div>');
-            redirect('auth');
+            $this->notification->notify_error('auth', 'Password yang anda masukkan salah');
          }
       } else {
-         $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> Username is not registered! </div>');
-         redirect('auth');
+         $this->notification->notify_error('auth', 'Username tidak terdaftar');
       }
    }
 
@@ -58,7 +60,6 @@ class Auth extends CI_Controller
    {
       $this->session->unset_userdata('username');
       $this->session->unset_userdata('role_id');
-      $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert"> You have been logged out! </div>');
-      redirect('auth');
+      $this->notification->notify_error('auth', 'Anda telah logout');
    }
 }

@@ -38,9 +38,7 @@ class Auth extends CI_Controller
       $username = $this->input->post('username');
       $password = $this->input->post('password');
       $user = $this->db->get_where('users', ['username' => $username])->row_array();
-      // cek usernya ada
       if ($user) {
-         // cek password
          if (password_verify($password, $user['password'])) {
             $data = [
                'user_id' => $user['id'],

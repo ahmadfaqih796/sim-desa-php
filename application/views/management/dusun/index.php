@@ -8,7 +8,7 @@
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
                <a href="javascript:void(0)" class="btn btn-success">
                   <i class="fas fa-print"></i> Cetak</a>
-               <a href="javascript:void(0)" class="btn btn-primary ms-3">
+               <a href="<?= base_url('management/dusun/add') ?>" class="btn btn-primary ms-3">
                   <i class="fas fa-plus"></i> Tambah
                </a>
 

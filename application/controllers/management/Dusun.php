@@ -12,32 +12,16 @@ class Dusun extends CI_Controller
 
    public function index()
    {
-      // $this->_validation();
-      // $data['title'] = 'Dusun';
-      // $data['user'] =  $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
-      // $data['users'] = $this->km->get_dusun();
-      // $data['posyandu'] = $this->pm->get_posyandu();
       $data = [
          'title' => "Dusun",
          'user' => $this->um->check_user($this->session->userdata('username')),
          'data' => $this->bm->get_all('dusun'),
       ];
-      $data['no'] = 1;
-      if ($this->form_validation->run() == false) {
-         $this->load->view('templates/header', $data);
-         $this->load->view('templates/sidebar', $data);
-         $this->load->view('templates/topbar', $data);
-         $this->load->view('management/dusun/index', $data);
-         // $this->load->view('management/dusun/edit');
-         $this->load->view('templates/footer', $data);
-      } else {
-         // $update = $this->input->post('updateData');
-         // if ($update) {
-         //    return $this->update();
-         // } else {
-         //    $this->notification->notify_error('management/dusun', 'Method initidak ditemukan');
-         // }
-      }
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar');
+      $this->load->view('templates/topbar');
+      $this->load->view('management/dusun/index');
+      $this->load->view('templates/footer');
    }
 
    private function update()
@@ -54,27 +38,66 @@ class Dusun extends CI_Controller
 
    public function _payload()
    {
-      $posyandu_id = htmlspecialchars($this->input->post('posyandu_id'));
-      $nik = htmlspecialchars($this->input->post('nik'));
-      $tempat_lahir = htmlspecialchars($this->input->post('tempat_lahir'));
-      $tanggal_lahir = htmlspecialchars($this->input->post('tanggal_lahir'));
-      $jabatan = htmlspecialchars($this->input->post('jabatan'));
-      $alamat = htmlspecialchars($this->input->post('alamat'));
-      $pendidikan_terakhir = htmlspecialchars($this->input->post('pendidikan_terakhir'));
-      $telepon = htmlspecialchars($this->input->post('telepon'));
+      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
 
       $payload = [
-         'nik' => $nik,
-         'posyandu_id' => $posyandu_id,
-         'tempat_lahir' => $tempat_lahir,
-         'tanggal_lahir' => $tanggal_lahir,
-         'jabatan' => $jabatan,
-         'alamat' => $alamat,
-         'pendidikan_terakhir' => $pendidikan_terakhir,
-         'telepon' => $telepon
+         'n_dusun' => $n_dusun,
       ];
 
       return $payload;
+   }
+
+   public function add()
+   {
+      $this->_validation();
+      $data = [
+         'title' => "Dusun",
+         'user' => $this->um->check_user($this->session->userdata('username')),
+         'data' => $this->bm->get_all('dusun'),
+      ];
+      if ($this->form_validation->run() == false) {
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar', $data);
+         $this->load->view('templates/topbar', $data);
+         $this->load->view('management/dusun/add', $data);
+         $this->load->view('templates/footer', $data);
+      } else {
+         $result = $this->bm->add('dusun', $this->_payload());
+         if ($result) {
+            $this->notification->notify_success('management/dusun', 'Berhasil menambahkan data');
+         } else {
+            $this->notification->notify_error('management/dusun', 'Gagal menambahkan data');
+         }
+      }
+   }
+
+   public function edit($id)
+   {
+      $this->_validation();
+      $data = [
+         'title' => "Dusun",
+         'user' => $this->um->check_user($this->session->userdata('username')),
+         'data' => $this->bm->get_all('dusun'),
+      ];
+      if ($this->form_validation->run() == false) {
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar', $data);
+         $this->load->view('templates/topbar', $data);
+         $this->load->view('management/dusun/edit', $data);
+         $this->load->view('templates/footer', $data);
+      } else {
+         $result = $this->bm->add('dusun', $this->_payload());
+         if ($result) {
+            $this->notification->notify_success('management/dusun', 'Berhasil menambahkan data');
+         } else {
+            $this->notification->notify_error('management/dusun', 'Gagal menambahkan data');
+         }
+      }
+   }
+
+   public function _validation()
+   {
+      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim');
    }
    // public function print()
    // {

@@ -14,11 +14,13 @@ class Dusun extends CI_Controller
    {
       // $this->_validation();
       // $data['title'] = 'Dusun';
-      $data['user'] =  $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
+      // $data['user'] =  $this->db->get_where('users', ['username' => $this->session->userdata('username')])->row_array();
       // $data['users'] = $this->km->get_dusun();
       // $data['posyandu'] = $this->pm->get_posyandu();
       $data = [
-         'title' => "Dusun"
+         'title' => "Dusun",
+         'user' => $this->um->check_user($this->session->userdata('username')),
+         'data' => $this->bm->get_dusun(),
       ];
       $data['no'] = 1;
       if ($this->form_validation->run() == false) {

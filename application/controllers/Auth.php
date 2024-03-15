@@ -45,7 +45,7 @@ class Auth extends CI_Controller
                'username' => $user['username']
             ];
             $this->session->set_userdata($data);
-            $this->notification->notify_success('auth', 'Anda berhasil login');
+            $this->notification->notify_success('management/dashboard', 'Anda berhasil login');
          } else {
             $this->notification->notify_error('auth', 'Password yang anda masukkan salah');
          }

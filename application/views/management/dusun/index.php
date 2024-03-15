@@ -32,9 +32,9 @@
                         <th scope="row"><?= $i ?></th>
                         <td><?= $field['n_dusun'] ?></td>
                         <td>
-                           <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#editModal<?= $field['id'] ?>">
+                           <a href="<?= base_url('management/dusun/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>
-                           </button>
+                           </a>
                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?= $field['id'] ?>">
                               <i class="fas fa-trash"></i>
                            </button>

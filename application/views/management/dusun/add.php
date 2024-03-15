@@ -3,13 +3,12 @@
       <div class="card-header">
          <div class="row align-items-center">
             <div class="col-md-6 col-xs-12">
-               <h5 class="card-title mb-0">Tambah Dusun</h5>
+               <h5 class="card-title mb-0">Tambah <?= $title ?></h5>
             </div>
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
-               <a href="<?= base_url('management/dusun/add') ?>" class="btn btn-danger ms-3">
+               <a href="<?= base_url('management/dusun') ?>" class="btn btn-danger ms-3">
                   Kembali
                </a>
-
             </div>
          </div>
       </div>

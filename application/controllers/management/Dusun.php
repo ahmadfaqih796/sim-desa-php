@@ -78,26 +78,29 @@ class Dusun extends CI_Controller
          'title' => "Dusun",
          'user' => $this->um->check_user($this->session->userdata('username')),
          'data' => $this->bm->get_all('dusun'),
+         'detail' => $this->bm->get_by_id('dusun', $id),
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);
-         $this->load->view('templates/sidebar', $data);
-         $this->load->view('templates/topbar', $data);
-         $this->load->view('management/dusun/edit', $data);
-         $this->load->view('templates/footer', $data);
+         $this->load->view('templates/sidebar');
+         $this->load->view('templates/topbar');
+         $this->load->view('management/dusun/edit');
+         $this->load->view('templates/footer');
       } else {
-         $result = $this->bm->add('dusun', $this->_payload());
+         $result = $this->bm->update('dusun', $id, $this->_payload());
          if ($result) {
-            $this->notification->notify_success('management/dusun', 'Berhasil menambahkan data');
+            $this->notification->notify_success('management/dusun', 'Berhasil merubah data');
          } else {
-            $this->notification->notify_error('management/dusun', 'Gagal menambahkan data');
+            $this->notification->notify_error('management/dusun', 'Gagal merubah data');
          }
       }
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim');
+      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
+         'required' => 'Nama harus diisi',
+      ]);
    }
    // public function print()
    // {

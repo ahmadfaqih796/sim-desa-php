@@ -20,7 +20,7 @@ class Dusun extends CI_Controller
       $data = [
          'title' => "Dusun",
          'user' => $this->um->check_user($this->session->userdata('username')),
-         'data' => $this->bm->get_dusun(),
+         'data' => $this->bm->get_all('dusun'),
       ];
       $data['no'] = 1;
       if ($this->form_validation->run() == false) {

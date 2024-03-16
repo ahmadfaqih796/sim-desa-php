@@ -8,6 +8,7 @@ class Penduduk extends CI_Controller
       parent::__construct();
       $this->load->library('session');
       $this->load->model('Base_model', 'bm');
+      $this->load->model('Penduduk_model', 'pm');
    }
 
    public function index()
@@ -82,16 +83,36 @@ class Penduduk extends CI_Controller
 
    public function _payload()
    {
-      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
+      $nama = htmlspecialchars($this->input->post('nama', true));
+      $nik = htmlspecialchars($this->input->post('nik', true));
+      $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
+      $dusun_id = htmlspecialchars($this->input->post('dusun_id', true));
+      $tempat_lahir = htmlspecialchars($this->input->post('tempat_lahir', true));
+      $tgl_lahir = htmlspecialchars($this->input->post('tgl_lahir', true));
+      $agama = htmlspecialchars($this->input->post('agama', true));
+      $s_nikah = htmlspecialchars($this->input->post('s_nikah', true));
+      $pekerjaan = htmlspecialchars($this->input->post('pekerjaan', true));
+      $pendidikan = htmlspecialchars($this->input->post('pendidikan', true));
+      $kk = htmlspecialchars($this->input->post('kk', true));
       $payload = [
-         'n_dusun' => $n_dusun,
+         'nama' => $nama,
+         'nik' => $nik,
+         'password' => $password,
+         'dusun_id' => $dusun_id,
+         'tempat_lahir' => $tempat_lahir,
+         'tgl_lahir' => $tgl_lahir,
+         'agama' => $agama,
+         's_nikah' => $s_nikah,
+         'pekerjaan' => $pekerjaan,
+         'pendidikan' => $pendidikan,
+         'kk' => $kk,
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
+      $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
    }

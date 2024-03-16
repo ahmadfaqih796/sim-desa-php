@@ -5,7 +5,7 @@ $sidebarMenu = array(
       "role" => array(1, 2, 6),
       "submenu" => array(
          array(
-            "url" => "dashboard",
+            "url" => "home/dashboard",
             "text" => "Dashboard",
             "icon" => "ti ti-layout-dashboard",
             "role" => array(1),

@@ -15,7 +15,7 @@ class Penduduk extends CI_Controller
    {
       $data = [
          'title' => "Penduduk",
-         'data' => $this->bm->get_all('penduduk'),
+         'data' => $this->pm->get_all_penduduk(),
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');

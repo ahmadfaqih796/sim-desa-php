@@ -14,7 +14,6 @@ class Dusun extends CI_Controller
    {
       $data = [
          'title' => "Dusun",
-         'user' => $this->um->check_user($this->session->userdata('username')),
          'data' => $this->bm->get_all('dusun'),
       ];
       $this->load->view('templates/header', $data);
@@ -24,21 +23,11 @@ class Dusun extends CI_Controller
       $this->load->view('templates/footer');
    }
 
-   public function _payload()
-   {
-      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
-      $payload = [
-         'n_dusun' => $n_dusun,
-      ];
-      return $payload;
-   }
-
    public function add()
    {
       $this->_validation();
       $data = [
          'title' => "Dusun",
-         'user' => $this->um->check_user($this->session->userdata('username')),
          'data' => $this->bm->get_all('dusun'),
       ];
       if ($this->form_validation->run() == false) {
@@ -62,7 +51,6 @@ class Dusun extends CI_Controller
       $this->_validation();
       $data = [
          'title' => "Dusun",
-         'user' => $this->um->check_user($this->session->userdata('username')),
          'data' => $this->bm->get_all('dusun'),
          'detail' => $this->bm->get_by_id('dusun', $id),
       ];
@@ -90,6 +78,15 @@ class Dusun extends CI_Controller
       } else {
          $this->notification->notify_error('management/dusun', 'Gagal menghapus data');
       }
+   }
+
+   public function _payload()
+   {
+      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
+      $payload = [
+         'n_dusun' => $n_dusun,
+      ];
+      return $payload;
    }
 
    public function _validation()

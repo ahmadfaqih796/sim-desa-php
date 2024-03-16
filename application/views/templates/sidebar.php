@@ -26,7 +26,10 @@ $sidebarMenu = array(
    ),
 );
 
-$userRole = $_SESSION['role_id'];
+$userRole = $this->session->userdata('role_id');
+if (!$userRole) {
+   $this->notification->notify_error('auth', 'Sessi anda telah habis, silahkan login kembali');
+}
 $filteredMenu = array();
 
 foreach ($sidebarMenu as $menu) {
@@ -42,6 +45,7 @@ foreach ($sidebarMenu as $menu) {
    <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
          <a href="./index.html" class="text-nowrap logo-img">
+            <!-- <i class="ti ti-home"></i> SIM DESA -->
             <img src="<?= base_url('assets/') ?>/images/logos/dark-logo.svg" width="180" alt="" />
          </a>
          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">

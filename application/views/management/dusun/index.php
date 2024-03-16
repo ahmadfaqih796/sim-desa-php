@@ -6,8 +6,6 @@
                <h5 class="card-title mb-0">Dusun</h5>
             </div>
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
-               <a href="javascript:void(0)" class="btn btn-success">
-                  <i class="fas fa-print"></i> Cetak</a>
                <a href="<?= base_url('management/dusun/add') ?>" class="btn btn-primary ms-3">
                   <i class="fas fa-plus"></i> Tambah
                </a>
@@ -46,11 +44,12 @@
          </div>
       </div>
    </div>
+</div>
 
-   <script>
-      function confirmDelete(id) {
-         if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-            window.location.href = "<?= base_url('management/dusun/delete/') ?>" + id;
-         }
+<script>
+   function confirmDelete(id) {
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+         window.location.href = "<?= base_url('management/dusun/delete/') ?>" + id;
       }
-   </script>
+   }
+</script>

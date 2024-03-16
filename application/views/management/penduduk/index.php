@@ -18,7 +18,15 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
+                     <th scope="col">Nama</th>
+                     <th scope="col">NIK</th>
                      <th scope="col">Dusun</th>
+                     <th scope="col">TTL</th>
+                     <th scope="col">Agama</th>
+                     <th scope="col">Status Perkawinan</th>
+                     <th scope="col">Pekerjaan</th>
+                     <th scope="col">Pendidikan</th>
+                     <th scope="col">KK</th>
                      <th scope="col">Action</th>
                   </tr>
                </thead>
@@ -27,7 +35,15 @@
                   foreach ($data as $field) : ?>
                      <tr>
                         <th scope="row"><?= $i ?></th>
+                        <td><?= $field['nama'] ?></td>
+                        <td><?= $field['nik'] ?></td>
                         <td><?= $field['n_dusun'] ?></td>
+                        <td><?= $field['tempat_lahir'] . ', ' . $field['tgl_lahir'] ?></td>
+                        <td><?= $field['agama'] ?></td>
+                        <td><?= $field['s_nikah'] ?></td>
+                        <td><?= $field['pekerjaan'] ?></td>
+                        <td><?= $field['pendidikan'] ?></td>
+                        <td><?= $field['kk'] ?></td>
                         <td>
                            <a href="<?= base_url('management/dusun/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>

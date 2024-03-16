@@ -19,7 +19,13 @@ $sidebarMenu = array(
          array(
             "url" => "management/dusun",
             "text" => "Dusun",
-            "icon" => "fas fa-fw fa-user",
+            "icon" => "ti ti-home",
+            "role" => array(1),
+         ),
+         array(
+            "url" => "management/penduduk",
+            "text" => "Penduduk",
+            "icon" => "ti ti-user",
             "role" => array(1),
          ),
       )

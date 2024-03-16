@@ -42,7 +42,8 @@ class Auth extends CI_Controller
          if (password_verify($password, $user['password'])) {
             $data = [
                'user_id' => $user['id'],
-               'username' => $user['username']
+               'username' => $user['username'],
+               'role_id' => 1
             ];
             $this->session->set_userdata($data);
             $this->notification->notify_success('management/dashboard', 'Anda berhasil login');

@@ -11,13 +11,12 @@
                <a href="<?= base_url('management/dusun/add') ?>" class="btn btn-primary ms-3">
                   <i class="fas fa-plus"></i> Tambah
                </a>
-
             </div>
          </div>
       </div>
       <div class="card-body">
          <div class="table-responsive">
-            <table class="table table-striped">
+            <table id="myTable" class="table table-striped">
                <thead>
                   <tr>
                      <th scope="col">No</th>
@@ -35,7 +34,7 @@
                            <a href="<?= base_url('management/dusun/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>
                            </a>
-                           <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal<?= $field['id'] ?>">
+                           <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
                               <i class="fas fa-trash"></i>
                            </button>
                         </td>
@@ -47,3 +46,11 @@
          </div>
       </div>
    </div>
+
+   <script>
+      function confirmDelete(id) {
+         if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+            window.location.href = "<?= base_url('management/dusun/delete/') ?>" + id;
+         }
+      }
+   </script>

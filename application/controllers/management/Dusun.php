@@ -24,26 +24,12 @@ class Dusun extends CI_Controller
       $this->load->view('templates/footer');
    }
 
-   private function update()
-   {
-      $id = htmlspecialchars($this->input->post('id'));
-
-      $result = $this->km->update_kader($id, $this->_payload());
-      if ($result) {
-         $this->notification->notify_success('management/dusun', 'Berhasil memperbarui kader');
-      } else {
-         $this->notification->notify_error('management/dusun', 'Gagal memperbarui kader');
-      }
-   }
-
    public function _payload()
    {
       $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
-
       $payload = [
          'n_dusun' => $n_dusun,
       ];
-
       return $payload;
    }
 
@@ -96,29 +82,20 @@ class Dusun extends CI_Controller
       }
    }
 
+   public function delete($id)
+   {
+      $result = $this->bm->delete('dusun', $id);
+      if ($result) {
+         $this->notification->notify_success('management/dusun', 'Berhasil menghapus data');
+      } else {
+         $this->notification->notify_error('management/dusun', 'Gagal menghapus data');
+      }
+   }
+
    public function _validation()
    {
       $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
    }
-   // public function print()
-   // {
-   //    require_once FCPATH . 'vendor/autoload.php';
-   //    $mpdf = new \Mpdf\Mpdf();
-
-   //    $data['title'] = 'Data Kader';
-   //    $data['no'] = 1;
-   //    $data['users'] = $this->km->get_dusun();
-
-   //    $html = $this->load->view('management/dusun/print', $data, true);
-
-   //    $mpdf->WriteHTML($html);
-   //    $mpdf->Output('data_kader.pdf', 'D');
-   // }
-
-   // private function _validation_kader()
-   // {
-   //    $this->form_validation->set_rules('nik', 'NIK', 'required|trim');
-   // }
 }

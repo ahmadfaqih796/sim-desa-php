@@ -19,10 +19,15 @@
                <input type="text" class="form-control <?= form_error('judul') ? 'is-invalid' : '' ?>" id="judul" name="judul" value="<?= set_value('judul') ?>">
                <?= form_error('judul', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                <label for="deskripsi" class="form-label">Deskripsi</label>
                <textarea class="form-control <?= form_error('deskripsi') ? 'is-invalid' : '' ?>" id="deskripsi" name="deskripsi" rows="3"><?= set_value('deskripsi') ?></textarea>
                <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
+            </div> -->
+            <div class="mb-3">
+               <label for="deskripsi" class="form-label">Deskripsi</label>
+               <input type="hidden" name="deskripsi" value="<?= set_value('deskripsi') ?>">
+               <div id="editor" style="min-height: 160px;"><?= set_value('deskripsi') ?></div>
             </div>
             <div class="mb-3">
                <label for="gambar" class="form-label">Gambar</label>

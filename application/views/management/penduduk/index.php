@@ -37,7 +37,7 @@
                   foreach ($data as $field) : ?>
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
-                        <td><?= $field['nama'] ?></td>
+                        <td><?= $field['fullname'] ?></td>
                         <td><?= $field['nik'] ?></td>
                         <td><?= $field['n_dusun'] ?></td>
                         <td><?= $field['tempat_lahir'] . ', ' . $field['tgl_lahir'] ?></td>

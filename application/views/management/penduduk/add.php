@@ -16,9 +16,9 @@
          <form action="<?= base_url('management/penduduk/add') ?>" method="post">
             <input type="hidden" name="pasword" value="1234" class="form-control">
             <div class="mb-3">
-               <label for="nama" class="form-label">Nama</label>
-               <input type="text" class="form-control <?= form_error('nama') ? 'is-invalid' : '' ?>" id="nama" name="nama" value="<?= set_value('nama') ?>">
-               <?= form_error('nama') ?>
+               <label for="fullname" class="form-label">Nama</label>
+               <input type="text" class="form-control <?= form_error('fullname') ? 'is-invalid' : '' ?>" id="fullname" name="fullname" value="<?= set_value('fullname') ?>">
+               <?= form_error('fullname') ?>
             </div>
             <div class="mb-3">
                <label for="dusun_id">Dusun</label>

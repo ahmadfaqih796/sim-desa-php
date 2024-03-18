@@ -85,7 +85,7 @@ class Penduduk extends CI_Controller
 
    public function _payload($type = null)
    {
-      $nama = htmlspecialchars($this->input->post('nama', true));
+      $fullname = htmlspecialchars($this->input->post('fullname', true));
       $nik = htmlspecialchars($this->input->post('nik', true));
       $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
       $dusun_id = htmlspecialchars($this->input->post('dusun_id', true));
@@ -98,7 +98,7 @@ class Penduduk extends CI_Controller
       $pendidikan = htmlspecialchars($this->input->post('pendidikan', true));
       $kk = htmlspecialchars($this->input->post('kk', true));
       $payload = [
-         'nama' => $nama,
+         'fullname' => $fullname,
          'nik' => $nik,
          'dusun_id' => $dusun_id,
          'tempat_lahir' => $tempat_lahir,
@@ -118,7 +118,7 @@ class Penduduk extends CI_Controller
 
    public function _validation()
    {
-      $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
+      $this->form_validation->set_rules('fullname', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
       $this->form_validation->set_rules('nik', 'NIK', 'required|trim', [

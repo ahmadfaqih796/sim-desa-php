@@ -67,6 +67,7 @@ class Auth extends CI_Controller
                   $data = [
                      'user_id' => $user['id'],
                      'username' => $user['username'],
+                     'fullname' => $user['fullname'],
                      'role_id' => 1
                   ];
                   $this->session->set_userdata($data);
@@ -85,7 +86,8 @@ class Auth extends CI_Controller
                   $data = [
                      'user_id' => $user['id'],
                      'nik' => $user['nik'],
-                     'role_id' => 1
+                     'fullname' => $user['fullname'],
+                     'role_id' => 2
                   ];
                   $this->session->set_userdata($data);
                   $this->notification->notify_success('home/dashboard', 'Anda berhasil login');

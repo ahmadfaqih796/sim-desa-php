@@ -20,7 +20,7 @@ class Pengajuan extends CI_Controller
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
-      $this->load->view('management/pengajuan/index');
+      $this->load->view('data/pengajuan/index');
       $this->load->view('templates/footer');
    }
 
@@ -35,14 +35,14 @@ class Pengajuan extends CI_Controller
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar', $data);
          $this->load->view('templates/topbar', $data);
-         $this->load->view('management/pengajuan/add', $data);
+         $this->load->view('data/pengajuan/add', $data);
          $this->load->view('templates/footer', $data);
       } else {
          $result = $this->bm->add('pengajuan', $this->_payload());
          if ($result) {
-            $this->notification->notify_success('management/pengajuan', 'Berhasil menambahkan data');
+            $this->notification->notify_success('data/pengajuan', 'Berhasil menambahkan data');
          } else {
-            $this->notification->notify_error('management/pengajuan', 'Gagal menambahkan data');
+            $this->notification->notify_error('data/pengajuan', 'Gagal menambahkan data');
          }
       }
    }
@@ -59,14 +59,14 @@ class Pengajuan extends CI_Controller
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar');
          $this->load->view('templates/topbar');
-         $this->load->view('management/pengajuan/edit');
+         $this->load->view('data/pengajuan/edit');
          $this->load->view('templates/footer');
       } else {
          $result = $this->bm->update('pengajuan', $id, $this->_payload());
          if ($result) {
-            $this->notification->notify_success('management/pengajuan', 'Berhasil merubah data');
+            $this->notification->notify_success('data/pengajuan', 'Berhasil merubah data');
          } else {
-            $this->notification->notify_error('management/pengajuan', 'Gagal merubah data');
+            $this->notification->notify_error('data/pengajuan', 'Gagal merubah data');
          }
       }
    }
@@ -75,25 +75,35 @@ class Pengajuan extends CI_Controller
    {
       $result = $this->bm->delete('pengajuan', $id);
       if ($result) {
-         $this->notification->notify_success('management/pengajuan', 'Berhasil menghapus data');
+         $this->notification->notify_success('data/pengajuan', 'Berhasil menghapus data');
       } else {
-         $this->notification->notify_error('management/pengajuan', 'Gagal menghapus data');
+         $this->notification->notify_error('data/pengajuan', 'Gagal menghapus data');
       }
    }
 
    public function _payload()
    {
-      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
+      $penduduk_id = htmlspecialchars($this->input->post('penduduk_id', true));
+      $tgl_pengajuan = htmlspecialchars($this->input->post('tgl_pengajuan', true));
+      $layanan = htmlspecialchars($this->input->post('layanan', true));
+
+      $currentDateTime = new DateTime();
+      $currentDateTimeString = $currentDateTime->format('YmdHis');
+      $uniqueDigits = str_pad(mt_rand(0, 99), 2, '0', STR_PAD_LEFT);
+      $no_pengajuan = $currentDateTimeString . $uniqueDigits;
       $payload = [
-         'n_dusun' => $n_dusun,
+         'no_pengajuan' => $no_pengajuan,
+         'penduduk_id' => $penduduk_id,
+         'tgl_pengajuan' => $tgl_pengajuan,
+         'layanan' => $layanan
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
-         'required' => 'Nama harus diisi',
+      $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required|trim', [
+         'required' => 'Tanggal Pengajuan harus diisi',
       ]);
    }
 }

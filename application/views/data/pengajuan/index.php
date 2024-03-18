@@ -6,7 +6,7 @@
                <h5 class="card-title mb-0"><?= $title ?></h5>
             </div>
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
-               <a href="<?= base_url('management/pengajuan/add') ?>" class="btn btn-primary ms-3">
+               <a href="<?= base_url('data/pengajuan/add') ?>" class="btn btn-primary ms-3">
                   <i class="fas fa-plus"></i> Tambah
                </a>
             </div>
@@ -22,6 +22,7 @@
                      <th scope="col">No</th>
                      <th scope="col">Nomor Pengajuan</th>
                      <th scope="col">Nama</th>
+                     <th scope="col">Status</th>
                      <th scope="col">Tanggal</th>
                      <th scope="col">Layanan</th>
                      <th scope="col">Action</th>
@@ -29,15 +30,25 @@
                </thead>
                <tbody>
                   <?php $i = 1;
-                  foreach ($data as $field) : ?>
+                  foreach ($data as $field) :
+                     $status = "";
+                     if ($field['tgl_selesai']) {
+                        $status = "Selesai";
+                     } elseif ($field['tgl_pengambilan']) {
+                        $status = "Pengambilan";
+                     } else {
+                        $status = "Pengajuan";
+                     }
+                  ?>
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['no_pengajuan'] ?></td>
                         <td><?= $field['fullname'] ?></td>
+                        <td><?= $status ?></td>
                         <td><?= $field['tgl_pengajuan'] ?></td>
                         <td><?= $field['layanan'] ?></td>
                         <td style="width: 80px;">
-                           <a href="<?= base_url('management/pengajuan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                           <a href="<?= base_url('data/pengajuan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>
                            </a>
                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
@@ -57,7 +68,7 @@
 <script>
    function confirmDelete(id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-         window.location.href = "<?= base_url('management/pengajuan/delete/') ?>" + id;
+         window.location.href = "<?= base_url('data/pengajuan/delete/') ?>" + id;
       }
    }
 </script>

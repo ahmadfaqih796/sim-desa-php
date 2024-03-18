@@ -2,7 +2,7 @@
 $sidebarMenu = array(
    array(
       "text" => "Home",
-      "role" => array(1, 2, 6),
+      "role" => array(1, 2),
       "submenu" => array(
          array(
             "url" => "home/dashboard",
@@ -14,7 +14,7 @@ $sidebarMenu = array(
    ),
    array(
       "text" => "Management",
-      "role" => array(1, 2, 6),
+      "role" => array(1),
       "submenu" => array(
          array(
             "url" => "management/dusun",
@@ -33,6 +33,18 @@ $sidebarMenu = array(
             "text" => "Berita",
             "icon" => "ti ti-news",
             "role" => array(1),
+         ),
+      )
+   ),
+   array(
+      "text" => "Data",
+      "role" => array(1, 2),
+      "submenu" => array(
+         array(
+            "url" => "data/pengajuan",
+            "text" => "Pengajuan",
+            "icon" => "ti ti-file",
+            "role" => array(1, 2),
          ),
       )
    ),
@@ -67,7 +79,7 @@ foreach ($sidebarMenu as $menu) {
       <!-- Sidebar navigation-->
       <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
          <ul id="sidebarnav">
-            <?php foreach ($sidebarMenu as $menuItem) : ?>
+            <?php foreach ($filteredMenu as $menuItem) : ?>
                <?php $isActiveMenu = ''; ?>
                <?php if (isset($menuItem['submenu'])) : ?>
                   <li class="nav-small-cap">

@@ -30,6 +30,7 @@ class Penduduk extends CI_Controller
       $data = [
          'title' => "Dusun",
          'data' => $this->bm->get_all('penduduk'),
+         'dusun' => $this->bm->get_all('dusun'),
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);
@@ -38,7 +39,7 @@ class Penduduk extends CI_Controller
          $this->load->view('management/penduduk/add', $data);
          $this->load->view('templates/footer', $data);
       } else {
-         $result = $this->bm->add('penduduk', $this->_payload());
+         $result = $this->bm->add('penduduk', $this->_payload("post"));
          if ($result) {
             $this->notification->notify_success('management/penduduk', 'Berhasil menambahkan data');
          } else {
@@ -81,7 +82,7 @@ class Penduduk extends CI_Controller
       }
    }
 
-   public function _payload()
+   public function _payload($type = null)
    {
       $nama = htmlspecialchars($this->input->post('nama', true));
       $nik = htmlspecialchars($this->input->post('nik', true));
@@ -91,22 +92,26 @@ class Penduduk extends CI_Controller
       $tgl_lahir = htmlspecialchars($this->input->post('tgl_lahir', true));
       $agama = htmlspecialchars($this->input->post('agama', true));
       $s_nikah = htmlspecialchars($this->input->post('s_nikah', true));
+      $s_hubungan = htmlspecialchars($this->input->post('s_hubungan', true));
       $pekerjaan = htmlspecialchars($this->input->post('pekerjaan', true));
       $pendidikan = htmlspecialchars($this->input->post('pendidikan', true));
       $kk = htmlspecialchars($this->input->post('kk', true));
       $payload = [
          'nama' => $nama,
          'nik' => $nik,
-         'password' => $password,
          'dusun_id' => $dusun_id,
          'tempat_lahir' => $tempat_lahir,
          'tgl_lahir' => $tgl_lahir,
          'agama' => $agama,
          's_nikah' => $s_nikah,
+         's_hubungan' => $s_hubungan,
          'pekerjaan' => $pekerjaan,
          'pendidikan' => $pendidikan,
          'kk' => $kk,
       ];
+      if ($type == 'post') {
+         $payload['password'] = $password;
+      }
       return $payload;
    }
 
@@ -114,6 +119,12 @@ class Penduduk extends CI_Controller
    {
       $this->form_validation->set_rules('nama', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
+      ]);
+      $this->form_validation->set_rules('nik', 'NIK', 'required|trim', [
+         'required' => 'NIK harus diisi',
+      ]);
+      $this->form_validation->set_rules('dusun_id', 'Dusun', 'required|trim', [
+         'required' => 'Dusun harus diisi',
       ]);
    }
 }

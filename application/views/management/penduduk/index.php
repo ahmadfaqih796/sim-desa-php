@@ -13,6 +13,8 @@
          </div>
       </div>
       <div class="card-body">
+         <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>
+         <?= $this->session->flashdata('message'); ?>
          <div class="table-responsive">
             <table id="myTable" class="table align-middle mb-0">
                <thead>

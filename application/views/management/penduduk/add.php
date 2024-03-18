@@ -49,11 +49,12 @@
                <label for="agama" class="form-label">Agama</label>
                <select name="agama" id="agama" class="form-control" required>
                   <option value="">--Pilih Agama--</option>
-                  <option value="islam" <?= set_select('agama', 'islam', (!empty($_POST['agama']) && $_POST['agama'] == "islam")); ?>>Islam</option>
-                  <option value="kristen" <?= set_select('agama', 'kristen', (!empty($_POST['agama']) && $_POST['agama'] == "kristen")); ?>>Kristen</option>
-                  <option value="budha" <?= set_select('agama', 'budha', (!empty($_POST['agama']) && $_POST['agama'] == "budha")); ?>>Budha</option>
-                  <option value="hindu" <?= set_select('agama', 'hindu', (!empty($_POST['agama']) && $_POST['agama'] == "hindu")); ?>>Hindu</option>
-                  <option value="katholik" <?= set_select('agama', 'katholik', (!empty($_POST['agama']) && $_POST['agama'] == "katholik")); ?>>Katholik</option>
+                  <option value="Islam" <?= set_select('agama', 'Islam', (!empty($_POST['agama']) && $_POST['agama'] == "Islam")); ?>>Islam</option>
+                  <option value="Kristen" <?= set_select('agama', 'Kristen', (!empty($_POST['agama']) && $_POST['agama'] == "Kristen")); ?>>Kristen</option>
+                  <option value="Katolik" <?= set_select('agama', 'Katolik', (!empty($_POST['agama']) && $_POST['agama'] == "Katolik")); ?>>Katolik</option>
+                  <option value="Hindu" <?= set_select('agama', 'Hindu', (!empty($_POST['agama']) && $_POST['agama'] == "Hindu")); ?>>Hindu</option>
+                  <option value="Budha" <?= set_select('agama', 'Budha', (!empty($_POST['agama']) && $_POST['agama'] == "Budha")); ?>>Budha</option>
+                  <option value="Konghucu" <?= set_select('agama', 'Konghucu', (!empty($_POST['agama']) && $_POST['agama'] == "Konghucu")); ?>>Konghucu</option>
                </select>
                <?= form_error('agama', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>

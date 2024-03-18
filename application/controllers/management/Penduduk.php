@@ -28,7 +28,7 @@ class Penduduk extends CI_Controller
    {
       $this->_validation();
       $data = [
-         'title' => "Dusun",
+         'title' => "Penduduk",
          'data' => $this->bm->get_all('penduduk'),
          'dusun' => $this->bm->get_all('dusun'),
       ];
@@ -52,8 +52,9 @@ class Penduduk extends CI_Controller
    {
       $this->_validation();
       $data = [
-         'title' => "Dusun",
+         'title' => "Penduduk",
          'data' => $this->bm->get_all('penduduk'),
+         'dusun' => $this->bm->get_all('dusun'),
          'detail' => $this->bm->get_by_id('penduduk', $id),
       ];
       if ($this->form_validation->run() == false) {

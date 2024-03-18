@@ -14,7 +14,7 @@
       </div>
       <div class="card-body">
          <div class="table-responsive">
-            <table id="myTable" class="table table-striped">
+            <table id="myTable" class="table align-middle mb-0">
                <thead>
                   <tr>
                      <th scope="col">No</th>
@@ -26,9 +26,9 @@
                   <?php $i = 1;
                   foreach ($data as $field) : ?>
                      <tr>
-                        <th scope="row"><?= $i ?></th>
+                        <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['n_dusun'] ?></td>
-                        <td>
+                        <td style="width: 80px;">
                            <a href="<?= base_url('management/dusun/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>
                            </a>

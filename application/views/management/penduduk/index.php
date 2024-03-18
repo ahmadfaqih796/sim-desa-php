@@ -14,7 +14,7 @@
       </div>
       <div class="card-body">
          <div class="table-responsive">
-            <table id="myTable" class="table table-striped">
+            <table id="myTable" class="table align-middle mb-0">
                <thead>
                   <tr>
                      <th scope="col">No</th>
@@ -34,7 +34,7 @@
                   <?php $i = 1;
                   foreach ($data as $field) : ?>
                      <tr>
-                        <th scope="row"><?= $i ?></th>
+                        <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['nama'] ?></td>
                         <td><?= $field['nik'] ?></td>
                         <td><?= $field['n_dusun'] ?></td>
@@ -44,8 +44,8 @@
                         <td><?= $field['pekerjaan'] ?></td>
                         <td><?= $field['pendidikan'] ?></td>
                         <td><?= $field['kk'] ?></td>
-                        <td>
-                           <a href="<?= base_url('management/dusun/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                        <td style="width: 80px;">
+                           <a href="<?= base_url('management/penduduk/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>
                            </a>
                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
@@ -65,7 +65,7 @@
 <script>
    function confirmDelete(id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-         window.location.href = "<?= base_url('management/dusun/delete/') ?>" + id;
+         window.location.href = "<?= base_url('management/penduduk/delete/') ?>" + id;
       }
    }
 </script>

@@ -60,7 +60,7 @@ class Berita extends CI_Controller
          $this->load->view('management/berita/edit');
          $this->load->view('templates/footer');
       } else {
-         $result = $this->bm->update('berita', $id, $this->_payload());
+         $result = $this->bm->update('berita', $id, $this->_payload('patch'));
          if ($result) {
             $this->notification->notify_success('management/berita', 'Berhasil merubah data');
          } else {
@@ -79,10 +79,24 @@ class Berita extends CI_Controller
       }
    }
 
-   public function _payload()
+   public function _payload($type = null)
    {
       $judul = htmlspecialchars($this->input->post('judul'));
       $deskripsi = htmlspecialchars($this->input->post('deskripsi', true));
+      $gambar = htmlspecialchars($this->input->post('gambar'), true);
+      $old_gambar = htmlspecialchars($this->input->post('old_gambar'), true);
+
+      // if ($type == 'patch') {
+
+      //    if ($old_gambar) {
+      //       $payload = [
+      //          'judul' => $judul,
+      //          'deskripsi' => $deskripsi,
+      //          'gambar' => $old_gambar
+      //       ];
+      //       return $payload;
+      //    }
+      // }
 
       $config['upload_path'] = './assets/images/berita/';
       $config['allowed_types'] = 'jpg|jpeg|png|gif';
@@ -91,8 +105,15 @@ class Berita extends CI_Controller
       $this->load->library('upload', $config);
 
       if (!$this->upload->do_upload('gambar')) {
-         return $this->notification->notify_error('management/berita', 'Ukuran gambar terlalu besar atau gambar tidak valid');
+         $payload = [
+            'judul' => $judul,
+            'deskripsi' => $deskripsi,
+            'gambar' => $old_gambar
+         ];
+         // $this->notification->notify_error('management/berita/add', 'Ukuran gambar terlalu besar atau gambar tidak valid');
+         return $payload;
       } else {
+         var_dump($this->upload->data());
          $data = $this->upload->data();
          $payload = [
             'judul' => $judul,

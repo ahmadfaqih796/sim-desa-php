@@ -21,6 +21,7 @@
                   <tr>
                      <th scope="col">No</th>
                      <th scope="col">Judul</th>
+                     <th scope="col">Gambar</th>
                      <th scope="col">Action</th>
                   </tr>
                </thead>
@@ -30,6 +31,9 @@
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['judul'] ?></td>
+                        <td>
+                           <img src="<?= base_url('assets/images/berita/' . $field['gambar']) ?>" alt="<?= $field['gambar'] ?>" width="100">
+                        </td>
                         <td style="width: 80px;">
                            <a href="<?= base_url('management/berita/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
                               <i class="fas fa-edit"></i>

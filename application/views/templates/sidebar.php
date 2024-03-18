@@ -28,6 +28,12 @@ $sidebarMenu = array(
             "icon" => "ti ti-user",
             "role" => array(1),
          ),
+         array(
+            "url" => "management/berita",
+            "text" => "Berita",
+            "icon" => "ti ti-news",
+            "role" => array(1),
+         ),
       )
    ),
 );

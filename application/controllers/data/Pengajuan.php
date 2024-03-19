@@ -13,10 +13,16 @@ class Pengajuan extends CI_Controller
 
    public function index()
    {
+      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Pengajuan",
-         'data' => $this->pm->get_all_data('pengajuan'),
+         'role' => $role,
       ];
+      if ($role == 1) {
+         $data['data'] = $this->pm->get_all_data('pengajuan');
+      } elseif ($role == 2) {
+         $data['data'] = $this->pm->get_all_data_by_penduduk('pengajuan', $this->session->userdata('user_id'));
+      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
@@ -73,6 +79,7 @@ class Pengajuan extends CI_Controller
 
    public function delete($id)
    {
+      // var_dump($id);
       $result = $this->bm->delete('pengajuan', $id);
       if ($result) {
          $this->notification->notify_success('data/pengajuan', 'Berhasil menghapus data');

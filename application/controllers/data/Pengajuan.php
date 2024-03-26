@@ -53,7 +53,7 @@ class Pengajuan extends CI_Controller
       }
    }
 
-   public function edit($id)
+   public function edit_pengambilan($id)
    {
       $this->_validation("pengambilan");
       $data = [

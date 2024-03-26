@@ -46,6 +46,18 @@ $sidebarMenu = array(
             "icon" => "ti ti-file",
             "role" => array(1, 2),
          ),
+         array(
+            "url" => "data/layanan",
+            "text" => "Layanan",
+            "icon" => "ti ti-file",
+            "role" => array(1, 2),
+         ),
+         array(
+            "url" => "data/laporan",
+            "text" => "Laporan",
+            "icon" => "ti ti-file",
+            "role" => array(1, 2),
+         ),
       )
    ),
 );
@@ -69,8 +81,9 @@ foreach ($sidebarMenu as $menu) {
    <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">
          <a href="./index.html" class="text-nowrap logo-img">
-            <!-- <i class="ti ti-home"></i> SIM DESA -->
-            <img src="<?= base_url('assets/') ?>/images/logos/dark-logo.svg" width="180" alt="" />
+            <!-- <i class="ti ti-home"></i> -->
+            <h3>SIM DESA</h3>
+            <!-- <img src="<?= base_url('assets/') ?>/images/logos/dark-logo.svg" width="180" alt="" /> -->
          </a>
          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
             <i class="ti ti-x fs-8"></i>

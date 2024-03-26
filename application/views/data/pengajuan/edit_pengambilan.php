@@ -16,7 +16,7 @@
          <?php var_dump($detail) ?>
          <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>
          <?= $this->session->flashdata('message'); ?>
-         <form action="<?= base_url('data/pengajuan/edit/' . $detail['id']) ?>" method="post">
+         <form action="<?= base_url('data/pengajuan/edit_pengambilan/' . $detail['id']) ?>" method="post">
             <div class="mb-3">
                <div class="form-group">
                   <label for="tgl_pengambilan" class="form-label">Tanggal Pengambilan</label>

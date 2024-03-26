@@ -36,25 +36,33 @@
                   <?php $i = 1;
                   foreach ($data as $field) :
                      $status = "";
+                     $status_class = '';
                      if ($field['tgl_selesai']) {
                         $status = "Selesai";
+                        $status_class = 'bg-success'; // Green background for completed status
                      } elseif ($field['tgl_pengambilan']) {
                         $status = "Pengambilan";
+                        $status_class = 'bg-primary'; // Blue background for pickup status
                      } else {
                         $status = "Pengajuan";
+                        $status_class = 'bg-warning'; // Yellow background for submission status
                      }
                   ?>
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['no_pengajuan'] ?></td>
                         <td><?= $field['fullname'] ?></td>
-                        <td><?= $status ?></td>
+                        <td>
+                           <div class="badge <?= $status_class ?>">
+                              <?= $status ?>
+                           </div>
+                        </td>
                         <td><?= $field['tgl_pengajuan'] ?></td>
                         <td><?= $field['layanan'] ?></td>
                         <?php if ($role == 1) : ?>
                            <td style="width: 80px;">
                               <?php if ($status == "Pengambilan" || $status == "Pengajuan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/edit/' . $field['id_table']) ?>" class="btn btn-success btn-sm">
+                                 <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table']) ?>" class="btn btn-success btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>

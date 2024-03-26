@@ -54,7 +54,7 @@
                         <?php if ($role == 1) : ?>
                            <td style="width: 80px;">
                               <?php if ($status == "Pengambilan" || $status == "Pengajuan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                                 <a href="<?= base_url('data/pengajuan/edit/' . $field['id_table']) ?>" class="btn btn-success btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>

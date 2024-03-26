@@ -55,7 +55,7 @@ class Pengajuan extends CI_Controller
 
    public function edit($id)
    {
-      $this->_validation();
+      $this->_validation("pengambilan");
       $data = [
          'title' => "Pengajuan",
          'data' => $this->bm->get_all('pengajuan'),
@@ -65,10 +65,10 @@ class Pengajuan extends CI_Controller
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar');
          $this->load->view('templates/topbar');
-         $this->load->view('data/pengajuan/edit');
+         $this->load->view('data/pengajuan/edit_pengambilan');
          $this->load->view('templates/footer');
       } else {
-         $result = $this->bm->update('pengajuan', $id, $this->_payload());
+         $result = $this->bm->update('pengajuan', $id, $this->_payload("pengambilan"));
          if ($result) {
             $this->notification->notify_success('data/pengajuan', 'Berhasil merubah data');
          } else {
@@ -88,11 +88,19 @@ class Pengajuan extends CI_Controller
       }
    }
 
-   public function _payload()
+   public function _payload($type = null)
    {
       $penduduk_id = htmlspecialchars($this->input->post('penduduk_id', true));
       $tgl_pengajuan = htmlspecialchars($this->input->post('tgl_pengajuan', true));
+      $tgl_pengambilan = htmlspecialchars($this->input->post('tgl_pengambilan', true));
       $layanan = htmlspecialchars($this->input->post('layanan', true));
+
+      if ($type == 'pengambilan') {
+         $payload = [
+            'tgl_pengambilan' => $tgl_pengambilan,
+         ];
+         return $payload;
+      }
 
       $currentDateTime = new DateTime();
       $currentDateTimeString = $currentDateTime->format('YmdHis');
@@ -107,10 +115,17 @@ class Pengajuan extends CI_Controller
       return $payload;
    }
 
-   public function _validation()
+   public function _validation($type = null)
    {
-      $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required|trim', [
-         'required' => 'Tanggal Pengajuan harus diisi',
-      ]);
+      if ($type === null) {
+         $this->form_validation->set_rules('tgl_pengajuan', 'Tanggal Pengajuan', 'required|trim', [
+            'required' => 'Tanggal Pengajuan harus diisi',
+         ]);
+      }
+      if ($type === 'pengambilan') {
+         $this->form_validation->set_rules('tgl_pengambilan', 'Tgl Pengambilan', 'required|trim', [
+            'required' => 'Tgl Pengambilan harus diisi',
+         ]);
+      }
    }
 }

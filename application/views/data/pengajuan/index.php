@@ -61,8 +61,13 @@
                         <td><?= $field['layanan'] ?></td>
                         <?php if ($role == 1) : ?>
                            <td style="width: 80px;">
-                              <?php if ($status == "Pengambilan" || $status == "Pengajuan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table']) ?>" class="btn btn-success btn-sm">
+                              <?php if ($status == "Pengajuan") : ?>
+                                 <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table']) ?>" class="btn btn-warning btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                 </a>
+                              <?php endif; ?>
+                              <?php if ($status == "Pengambilan") : ?>
+                                 <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>

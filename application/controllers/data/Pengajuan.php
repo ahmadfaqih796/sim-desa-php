@@ -77,6 +77,30 @@ class Pengajuan extends CI_Controller
       }
    }
 
+   public function edit_selesai($id)
+   {
+      $this->_validation("selesai");
+      $data = [
+         'title' => "Pengajuan",
+         'data' => $this->bm->get_all('pengajuan'),
+         'detail' => $this->bm->get_by_id('pengajuan', $id),
+      ];
+      if ($this->form_validation->run() == false) {
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar');
+         $this->load->view('templates/topbar');
+         $this->load->view('data/pengajuan/edit_selesai');
+         $this->load->view('templates/footer');
+      } else {
+         $result = $this->bm->update('pengajuan', $id, $this->_payload("selesai"));
+         if ($result) {
+            $this->notification->notify_success('data/pengajuan', 'Berhasil merubah data');
+         } else {
+            $this->notification->notify_error('data/pengajuan', 'Gagal merubah data');
+         }
+      }
+   }
+
    public function delete($id)
    {
       // var_dump($id);
@@ -93,11 +117,21 @@ class Pengajuan extends CI_Controller
       $penduduk_id = htmlspecialchars($this->input->post('penduduk_id', true));
       $tgl_pengajuan = htmlspecialchars($this->input->post('tgl_pengajuan', true));
       $tgl_pengambilan = htmlspecialchars($this->input->post('tgl_pengambilan', true));
+      $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai', true));
       $layanan = htmlspecialchars($this->input->post('layanan', true));
 
       if ($type == 'pengambilan') {
          $payload = [
             'tgl_pengambilan' => $tgl_pengambilan,
+            's_pengajuan' => 'Pengambilan',
+         ];
+         return $payload;
+      }
+
+      if ($type == 'selesai') {
+         $payload = [
+            'tgl_selesai' => $tgl_selesai,
+            's_pengajuan' => 'Selesai',
          ];
          return $payload;
       }
@@ -110,6 +144,7 @@ class Pengajuan extends CI_Controller
          'no_pengajuan' => $no_pengajuan,
          'penduduk_id' => $penduduk_id,
          'tgl_pengajuan' => $tgl_pengajuan,
+         's_pengajuan' => 'Pengajuan',
          'layanan' => $layanan
       ];
       return $payload;
@@ -125,6 +160,11 @@ class Pengajuan extends CI_Controller
       if ($type === 'pengambilan') {
          $this->form_validation->set_rules('tgl_pengambilan', 'Tgl Pengambilan', 'required|trim', [
             'required' => 'Tgl Pengambilan harus diisi',
+         ]);
+      }
+      if ($type === 'selesai') {
+         $this->form_validation->set_rules('tgl_selesai', 'Tgl Selesai', 'required|trim', [
+            'required' => 'Tgl Selesai harus diisi',
          ]);
       }
    }

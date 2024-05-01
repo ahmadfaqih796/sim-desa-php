@@ -88,7 +88,8 @@ foreach ($sidebarMenu as $menu) {
       <div class="brand-logo d-flex align-items-center justify-content-between">
          <a href="./index.html" class="text-nowrap logo-img">
             <!-- <i class="ti ti-home"></i> -->
-            <h3>SIM DESA</h3>
+            <h4 class="text-center" style="font-size: 16px;">Desa Ulumamis Situnggaling</h4>
+
             <!-- <img src="<?= base_url('assets/') ?>/images/logos/dark-logo.svg" width="180" alt="" /> -->
          </a>
          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">

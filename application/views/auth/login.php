@@ -6,8 +6,8 @@
             <div class="col-md-8 col-lg-6 col-xxl-3">
                <div class="card mb-0">
                   <div class="card-body">
+                     <h3 class="text-center">Sistem Informasi Desa Ulumamis Situnggaling</h3>
                      <a href="./index.html" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                        <h1>SIM DESA</h1>
                         <!-- <img src="<?= base_url('assets/') ?>images/logos/dark-logo.svg" width="180" alt=""> -->
                      </a>
                      <p class="text-center">Login User</p>

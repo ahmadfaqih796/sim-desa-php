@@ -10,8 +10,20 @@
             </div>
             <div class="card-body">
                <div class="text-center">
-                  <img src="<?= base_url('assets/') ?>/images/profile/user-1.jpg" alt="" width="150" height="150" class="rounded-circle">
+                  <img src="<?= base_url('assets/images/profil/' . $data['photo']) ?>" alt="" width="150" height="150" class="rounded-circle" style="object-fit: cover;">
                </div>
+               <div class="mt-3">
+                  <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>
+                  <?= $this->session->flashdata('message'); ?>
+               </div>
+               <form action="<?= base_url('setting/profil/edit/' . $data['id']) ?>" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="old_gambar" value="<?= $data['photo'] ?>">
+                  <div class="mb-3">
+                     <input type="file" class="form-control <?= form_error('gambar') ? 'is-invalid' : '' ?>" id="gambar" name="gambar">
+                     <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
+                  </div>
+                  <button type="submit" class="btn btn-primary">Submit</button>
+               </form>
             </div>
          </div>
       </div>

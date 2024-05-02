@@ -25,6 +25,36 @@ class Profil extends CI_Controller
       $this->load->view('templates/footer');
    }
 
+   public function edit($id)
+   {
+      $result = $this->bm->update('penduduk', $id, $this->_payload_image());
+      if ($result) {
+         $this->notification->notify_success('setting/profil', 'Berhasil merubah data');
+      } else {
+         $this->notification->notify_error('setting/profil', 'Gagal merubah data');
+      }
+   }
+
+   public function _payload_image()
+   {
+      $config['upload_path'] = './assets/images/profil/';
+      $config['allowed_types'] = 'jpg|jpeg|png|gif';
+      $config['max_size'] = 1024;
+
+      $this->load->library('upload', $config);
+
+      if (!$this->upload->do_upload('gambar')) {
+         $this->notification->notify_error('setting/profil', 'Ukuran gambar terlalu besar atau gambar tidak valid');
+      } else {
+         var_dump($this->upload->data());
+         $data = $this->upload->data();
+         $payload = [
+            'photo' => $data['file_name']
+         ];
+         return $payload;
+      }
+   }
+
    public function _validation()
    {
       $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [

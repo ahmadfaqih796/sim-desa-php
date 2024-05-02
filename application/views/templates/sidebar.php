@@ -66,6 +66,18 @@ $sidebarMenu = array(
          ),
       )
    ),
+   array(
+      "text" => "Pengaturan",
+      "role" => array(2),
+      "submenu" => array(
+         array(
+            "url" => "setting/profil",
+            "text" => "Profil",
+            "icon" => "ti ti-file",
+            "role" => array(2),
+         ),
+      )
+   ),
 );
 
 $userRole = $this->session->userdata('role_id');

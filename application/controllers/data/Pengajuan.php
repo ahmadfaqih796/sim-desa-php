@@ -36,6 +36,7 @@ class Pengajuan extends CI_Controller
       $data = [
          'title' => "Pengajuan",
          'data' => $this->bm->get_all('pengajuan'),
+         'layanan' => $this->bm->get_all('surat'),
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);

@@ -24,8 +24,10 @@
                <label for="layanan" class="form-label">Layanan</label>
                <select name="layanan" id="layanan" class="form-control" required>
                   <option value="">--Pilih Layanan--</option>
-                  <option value="Surat Keterangan Pindah" <?= set_select('layanan', 'Surat Keterangan Pindah', (!empty($_POST['layanan']) && $_POST['layanan'] == "Surat Keterangan Pindah")); ?>>Surat Keterangan Pindah</option>
-                  <option value="Pengajuan Pembuatan AKTA Lahir" <?= set_select('layanan', 'Pengajuan Pembuatan AKTA Lahir', (!empty($_POST['layanan']) && $_POST['layanan'] == "Pengajuan Pembuatan AKTA Lahir")); ?>>Pengajuan Pembuatan AKTA Lahir</option>
+
+                  <?php foreach ($layanan as $data) :  ?>
+                     <option value="<?= $data['n_surat'] ?>" <?= set_select('n_surat', $data['n_surat'], (!empty($_POST['n_surat']) && $_POST['n_surat'] == $data['n_surat'])); ?>><?= $data['n_surat'] ?></option>
+                  <?php endforeach; ?>
 
                </select>
                <?= form_error('layanan', '<small class="text-danger pl-3">', '</small>'); ?>

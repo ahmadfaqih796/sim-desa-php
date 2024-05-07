@@ -8,7 +8,7 @@ if ($users['photo']) {
 <!--  Main wrapper -->
 <div class="body-wrapper">
    <!--  Header Start -->
-   <header class="app-header">
+   <header class="app-header" id="navbar">
       <nav class="navbar navbar-expand-lg navbar-light">
          <ul class="navbar-nav">
             <li class="nav-item d-block d-xl-none">

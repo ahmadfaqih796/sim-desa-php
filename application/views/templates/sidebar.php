@@ -94,7 +94,8 @@ foreach ($sidebarMenu as $menu) {
 
 ?>
 
-<aside class="left-sidebar">
+<!-- Sidebar Color-->
+<aside class="left-sidebar" id="sidebar">
    <!-- Sidebar scroll-->
    <div>
       <div class="brand-logo d-flex align-items-center justify-content-between">

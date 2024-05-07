@@ -1,0 +1,23 @@
+#body {
+	background: #e1f0da;
+}
+
+#sidebar {
+	background: #d4e7c5;
+}
+
+#navbar {
+	background: #99bc85;
+}
+
+.sidebar-nav ul .sidebar-item .sidebar-link:hover {
+	background-color: rgba(93, 135, 255, 0.1);
+	color: green;
+}
+
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link,
+.sidebar-nav ul .sidebar-item.selected > .sidebar-link.active,
+.sidebar-nav ul .sidebar-item > .sidebar-link.active {
+	background-color: green;
+	color: #fff;
+}

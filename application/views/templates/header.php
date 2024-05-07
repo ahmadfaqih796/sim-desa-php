@@ -5,8 +5,9 @@
    <meta charset="utf-8">
    <meta name="viewport" content="width=device-width, initial-scale=1">
    <title><?= $title ?></title>
-   <link rel="shortcut icon" type="image/png" href="<?= base_url('assets/') ?>/images/logos/favicon.png" />
-   <link rel="stylesheet" href="<?= base_url('assets/') ?>/css/styles.min.css" />
+   <link rel="shortcut icon" type="image/png" href="<?= base_url('assets/') ?>images/logos/favicon.png" />
+   <link rel="stylesheet" href="<?= base_url('assets/') ?>css/custom.css" />
+   <link rel="stylesheet" href="<?= base_url('assets/') ?>css/styles.min.css" />
 
    <!-- Custom fonts for this template-->
    <link href="<?= base_url("assets/") ?>vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -29,6 +30,6 @@
 
 </head>
 
-<body>
+<body id="body">
    <!--  Body Wrapper -->
    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full" data-sidebar-position="fixed" data-header-position="fixed">

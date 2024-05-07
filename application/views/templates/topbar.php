@@ -1,5 +1,12 @@
 <?php
-$users = $this->db->get_where('penduduk', ['id' => $this->session->userdata('user_id')])->row_array();
+$role = $this->session->userdata('role_id');
+$result = false;
+if ($role === 1) {
+   $users = $this->db->get_where('users', ['id' => $this->session->userdata('user_id')])->row_array();
+}
+if ($role === 2) {
+   $users = $this->db->get_where('penduduk', ['id' => $this->session->userdata('user_id')])->row_array();
+}
 $base_image_url = base_url('assets/images/profile/user-1.jpg');
 if ($users['photo']) {
    $base_image_url = base_url('assets/images/profil/') . $users['photo'];

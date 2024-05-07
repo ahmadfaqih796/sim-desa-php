@@ -1,6 +1,11 @@
+<?php
+$base_image_url = base_url('assets/images/profile/user-1.jpg');
+if ($data['photo']) {
+   $base_image_url = base_url('assets/images/profil/') . $data['photo'];
+}
+?>
 <div class="container-fluid">
    <div class="row">
-
       <div class="col-md-3 col-xs-12">
          <div class="card">
             <div class="card-header">
@@ -10,7 +15,7 @@
             </div>
             <div class="card-body">
                <div class="text-center">
-                  <img src="<?= base_url('assets/images/profil/' . $data['photo']) ?>" alt="" width="150" height="150" class="rounded-circle" style="object-fit: cover;">
+                  <img src="<?= $base_image_url ?>" alt="" width="150" height="150" class="rounded-circle" style="object-fit: cover;">
                </div>
                <div class="mt-3">
                   <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>

@@ -40,6 +40,7 @@ class Profil extends CI_Controller
    public function edit($id)
    {
       $role = $this->session->userdata('role_id');
+      $result = false;
       if ($role === 1) {
          $result = $this->bm->update('users', $id, $this->_payload_image());
       }

@@ -22,10 +22,15 @@
                <input type="text" class="form-control <?= form_error('judul') ? 'is-invalid' : '' ?>" id="judul" name="judul" value="<?= $detail['judul'] ?>">
                <?= form_error('judul', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                <label for="deskripsi" class="form-label">Deskripsi</label>
                <input type="hidden" name="deskripsi" value="<?= $detail['deskripsi'] ?>">
                <div id="editor" style="min-height: 160px;"><?= htmlspecialchars_decode($detail['deskripsi']) ?></div>
+            </div> -->
+            <div class="mb-3">
+               <label for="deskripsi" class="form-label">Deskripsi</label>
+               <textarea name="deskripsi" id="editor" class="form-control <?= form_error('deskripsi') ? 'is-invalid' : '' ?>"><?= $detail['deskripsi'] ?></textarea>
+               <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
             <div class="mb-3">
                <label for="gambar" class="form-label">Gambar</label>
@@ -36,3 +41,15 @@
          </form>
       </div>
    </div>
+
+   <!-- CKEditor -->
+   <script>
+      ClassicEditor
+         .create(document.querySelector('#editor'))
+         .then(editor => {
+            console.log(editor);
+         })
+         .catch(error => {
+            console.error(error);
+         });
+   </script>

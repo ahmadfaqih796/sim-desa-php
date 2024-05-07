@@ -44,7 +44,7 @@
                         $status = "Pengambilan";
                         $status_class = 'bg-primary'; // Blue background for pickup status
                      } else {
-                        $status = "Pengajuan";
+                        $status = "Proses";
                         $status_class = 'bg-warning'; // Yellow background for submission status
                      }
                   ?>
@@ -61,8 +61,8 @@
                         <td><?= $field['layanan'] ?></td>
                         <?php if ($role == 1) : ?>
                            <td style="width: 80px;">
-                              <?php if ($status == "Pengajuan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table']) ?>" class="btn btn-warning btn-sm">
+                              <?php if ($status == "Proses") : ?>
+                                 <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>

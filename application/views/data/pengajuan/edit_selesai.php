@@ -22,6 +22,11 @@
                   <input type="datetime-local" class="form-control <?= form_error('tgl_selesai') ? 'is-invalid' : '' ?>" id="tgl_selesai" name="tgl_selesai" value="<?= $detail['tgl_selesai'] ?>">
                   <?= form_error('tgl_selesai', '<small class="text-danger pl-3">', '</small>'); ?>
                </div>
+               <!-- <div class="form-group">
+                  <label for="tgl_pengambilan" class="form-label">Upload File</label>
+                  <input type="file" class="form-control <?= form_error('tgl_pengambilan') ? 'is-invalid' : '' ?>" id="tgl_pengambilan" name="tgl_pengambilan" value="<?= $detail['tgl_pengambilan'] ?>">
+                  <?= form_error('tgl_pengambilan', '<small class="text-danger pl-3">', '</small>'); ?>
+               </div> -->
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
          </form>

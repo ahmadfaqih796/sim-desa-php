@@ -54,12 +54,13 @@ class Pengajuan extends CI_Controller
       }
    }
 
-   public function edit_pengambilan($id)
+   public function edit_pengambilan($id, $id_penduduk)
    {
       $this->_validation("pengambilan");
       $data = [
-         'title' => "Pengajuan",
+         'title' => "Proses Pengajuan",
          'data' => $this->bm->get_all('pengajuan'),
+         'user' => $this->pm->get_data_by_id($id_penduduk),
          'detail' => $this->bm->get_by_id('pengajuan', $id),
       ];
       if ($this->form_validation->run() == false) {
@@ -121,6 +122,8 @@ class Pengajuan extends CI_Controller
       $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai', true));
       $layanan = htmlspecialchars($this->input->post('layanan', true));
 
+      $currentDateTime = new DateTime();
+
       if ($type == 'pengambilan') {
          $payload = [
             'tgl_pengambilan' => $tgl_pengambilan,
@@ -137,7 +140,6 @@ class Pengajuan extends CI_Controller
          return $payload;
       }
 
-      $currentDateTime = new DateTime();
       $currentDateTimeString = $currentDateTime->format('YmdHis');
       $uniqueDigits = str_pad(mt_rand(0, 99), 2, '0', STR_PAD_LEFT);
       $no_pengajuan = $currentDateTimeString . $uniqueDigits;

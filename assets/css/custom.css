@@ -21,3 +21,23 @@
 	background-color: green;
 	color: #fff;
 }
+
+#myTable {
+	/* border: 1px solid #dee2e6; */
+	padding-top: 10px;
+	border-collapse: collapse;
+	width: 99%;
+}
+
+#myTable tr th,
+#myTable tr td {
+	border: 1px solid #dee2e6;
+	/* border: 0; */
+	/* padding: 1rem; */
+}
+
+.paginate_button.current {
+	background: #d4e7c5 !important;
+	border: 1px solid green !important;
+	border-radius: 100% !important;
+}

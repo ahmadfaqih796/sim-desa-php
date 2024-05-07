@@ -28,14 +28,15 @@
             </div> -->
             <div class="mb-3">
                <label for="deskripsi" class="form-label">Deskripsi</label>
-               <input type="hidden" name="deskripsi" value="<?= set_value('deskripsi') ?>">
-               <div id="editor" style="min-height: 160px;"><?= set_value('deskripsi') ?></div>
+               <textarea name="deskripsi" id="editor" class="form-control <?= form_error('deskripsi') ? 'is-invalid' : '' ?>"><?= set_value('deskripsi') ?></textarea>
+               <?= form_error('deskripsi', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
             <div class="mb-3">
                <label for="gambar" class="form-label">Gambar</label>
                <input type="file" class="form-control <?= form_error('gambar') ? 'is-invalid' : '' ?>" id="gambar" name="gambar" required>
                <?= form_error('gambar', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
+            <!-- <div id="editor">This is some sample content.</div> -->
             <button type="submit" class="btn btn-primary">Submit</button>
          </form>
       </div>

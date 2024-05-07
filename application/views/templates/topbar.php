@@ -28,7 +28,7 @@ if ($users['photo']) {
                <li class="nav-item dropdown">
                   <a class="nav-link" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown" aria-expanded="false">
                      <img src="<?= $base_image_url ?>" alt="" width="35" height="35" class="rounded-circle">
-                     <p class="fs-3 mb-0 text-dark ms-2"><?= $this->session->userdata('fullname') ?></p>
+                     <p class="fs-3 mb-0 text-white ms-2"><?= $this->session->userdata('fullname') ?></p>
                   </a>
                   <div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
                      <div class="message-body">

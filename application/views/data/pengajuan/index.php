@@ -60,16 +60,19 @@
                         <td><?= $field['tgl_pengajuan'] ?></td>
                         <td><?= $field['layanan'] ?></td>
                         <?php if ($role == 1) : ?>
-                           <td style="width: 80px;">
+                           <td style="width: 100px;">
                               <?php if ($status == "Proses") : ?>
                                  <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>
                               <?php if ($status == "Pengambilan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
-                                    <i class="fas fa-edit"></i>
+                                 <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
+                                    <i class="fas fa-print"></i>
                                  </a>
+                                 <!-- <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                 </a> -->
                               <?php endif; ?>
                               <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-trash"></i>

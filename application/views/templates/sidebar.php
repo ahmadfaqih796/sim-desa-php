@@ -68,13 +68,13 @@ $sidebarMenu = array(
    ),
    array(
       "text" => "Pengaturan",
-      "role" => array(2),
+      "role" => array(1, 2),
       "submenu" => array(
          array(
             "url" => "setting/profil",
             "text" => "Profil",
             "icon" => "ti ti-file",
-            "role" => array(2),
+            "role" => array(1, 2),
          ),
       )
    ),

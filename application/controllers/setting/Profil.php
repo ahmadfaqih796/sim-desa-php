@@ -14,20 +14,38 @@ class Profil extends CI_Controller
    public function index()
    {
       $user_id = $this->session->userdata('user_id');
+      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Profil",
          'data' => $this->pm->get_data_by_id($user_id),
       ];
+      if ($role === 1) {
+         $data['data'] = $this->bm->get_by_id("users", $user_id);
+      }
+      if ($role === 2) {
+         $data['data'] = $this->pm->get_data_by_id($user_id);
+      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
-      $this->load->view('setting/profil/index');
+      if ($role === 1) {
+         $this->load->view('setting/profil/admin');
+      }
+      if ($role === 2) {
+         $this->load->view('setting/profil/index');
+      }
       $this->load->view('templates/footer');
    }
 
    public function edit($id)
    {
-      $result = $this->bm->update('penduduk', $id, $this->_payload_image());
+      $role = $this->session->userdata('role_id');
+      if ($role === 1) {
+         $result = $this->bm->update('users', $id, $this->_payload_image());
+      }
+      if ($role === 2) {
+         $result = $this->bm->update('penduduk', $id, $this->_payload_image());
+      }
       if ($result) {
          $this->notification->notify_success('setting/profil', 'Berhasil merubah data');
       } else {

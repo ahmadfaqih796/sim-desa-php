@@ -30,6 +30,21 @@ class Pengajuan extends CI_Controller
       $this->load->view('templates/footer');
    }
 
+   public function print($id, $id_penduduk)
+   {
+      require_once FCPATH . 'vendor/autoload.php';
+      $mpdf = new \Mpdf\Mpdf();
+      $data = [
+         'title' => 'Surat Pengantar',
+         'no' => 1,
+         'detail' => $this->pm->get_pengajuan_by_id($id),
+      ];
+      $html = $this->load->view('data/pengajuan/print', $data, true);
+
+      $mpdf->WriteHTML($html);
+      $mpdf->Output('surat_pengantar.pdf', 'D');
+   }
+
    public function add()
    {
       $this->_validation();

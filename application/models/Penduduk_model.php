@@ -42,4 +42,14 @@ class Penduduk_model extends CI_Model
       $this->db->where('p.id', $id);
       return $this->db->get()->row_array();
    }
+
+   public function get_pengajuan_by_id($id)
+   {
+      $this->db->select('p.*, k.*, p.id as id_table, d.n_dusun');
+      $this->db->from('pengajuan p');
+      $this->db->join('penduduk k', 'p.penduduk_id = k.id', 'left');
+      $this->db->join('dusun d', 'k.dusun_id = d.id', 'left');
+      $this->db->where('p.id', $id);
+      return $this->db->get()->row_array();
+   }
 }

@@ -53,16 +53,28 @@ $sidebarMenu = array(
             "role" => array(1, 2),
          ),
          array(
-            "url" => "data/layanan",
-            "text" => "Layanan",
-            "icon" => "ti ti-file",
-            "role" => array(1, 2),
-         ),
-         array(
             "url" => "data/laporan",
             "text" => "Laporan",
             "icon" => "ti ti-file",
             "role" => array(1, 2),
+         ),
+      )
+   ),
+   array(
+      "text" => "Informasi",
+      "role" => array(1),
+      "submenu" => array(
+         array(
+            "url" => "informasi/blt",
+            "text" => "Penerimaan BLT",
+            "icon" => "ti ti-file",
+            "role" => array(1),
+         ),
+         array(
+            "url" => "informasi/jadwal",
+            "text" => "Jadwal Wirid Akbar",
+            "icon" => "ti ti-file",
+            "role" => array(1),
          ),
       )
    ),

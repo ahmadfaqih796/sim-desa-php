@@ -76,7 +76,7 @@
       </tr>
    </table>
    <h1 style="text-decoration: underline;"><?= $detail['layanan'] ?></h1>
-   <h1>Nomor : 474/359/X/<?= date('Y') ?></h1>
+   <h1>Nomor : ...../..../.../<?= date('Y') ?></h1>
    <br>
    <p>
       Yang bertanda tangan dibawah ini :
@@ -148,7 +148,7 @@
          <tr>
             <td>Berlaku mulai tanggal</td>
             <td>:</td>
-            <td><?= $detail['tgl_pengambilan'] . ' s/d ' . date('Y-m-d', strtotime('+1 month', strtotime($detail['tgl_pengambilan']))) ?></td>
+            <td><?= $detail['tgl_pengambilan'] . ' s/d ' . date('Y-m-d', strtotime('+5 month', strtotime($detail['tgl_pengambilan']))) ?></td>
          </tr>
       </thead>
    </table>

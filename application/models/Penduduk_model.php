@@ -19,9 +19,10 @@ class Penduduk_model extends CI_Model
 
    public function get_all_data($table)
    {
-      $this->db->select('t.*, t.id as id_table, p.*');
+      $this->db->select('t.*, t.id as id_table, p.*, d.n_dusun');
       $this->db->from($table . ' t');
       $this->db->join('penduduk p', 't.penduduk_id = p.id', 'left');
+      $this->db->join('dusun d', 'p.dusun_id = d.id', 'left');
       return $this->db->get()->result_array();
    }
 

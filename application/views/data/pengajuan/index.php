@@ -69,18 +69,23 @@
                               </button>
                            <?php endif; ?>
                            <?php if ($status == "Pengambilan") : ?>
-                              <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
+                              <?php if ($role == 1) : ?>
+                                 <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
+                                    <i class="fas fa-edit"></i>
+                                 </a>
+                              <?php endif; ?>
+                              <!-- <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdateStatus(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-edit"></i>
-                              </a>
-                              <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdateStatus(<?= $field['id_table'] ?>)">
-                                 <i class="fas fa-edit"></i>
-                              </button>
-                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
+                              </button> -->
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-success btn-sm">
                                  <i class="fas fa-print"></i>
                               </a>
                            <?php endif; ?>
                            <?php if ($status == "Selesai") : ?>
-                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
+                              <a href="<?= base_url('assets/images/bukti/' . $field['bukti']) ?>" class="btn btn-light btn-sm" target="_blank">
+                                 <i class="fas fa-eye"></i>
+                              </a>
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-success btn-sm">
                                  <i class="fas fa-print"></i>
                               </a>
                            <?php endif; ?>

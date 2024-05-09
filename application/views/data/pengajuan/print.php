@@ -170,12 +170,12 @@
          <p>(<?= $detail['fullname'] ?>)</p>
       </div>
       <div class="ttd" align="right" style="width: 50%;float: right;">
-         <p style="text-align: center;">Kepala Desa Ullumamis Situnggaling</p>
+         <p style="text-align: center;">Kepala Desa <?= $desa['n_desa'] ?></p>
          <br style="margin-top: -10cm; margin-bottom: -20cm;">
          <br>
          <br>
          <br>
-         <p style="text-align: center;">(AMIN FAUZI)</p>
+         <p style="text-align: center;"><?= $desa['n_kepala_desa'] ?></p>
       </div>
    </div>
 </body>

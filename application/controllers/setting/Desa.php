@@ -16,54 +16,84 @@ class Desa extends CI_Controller
       $user_id = $this->session->userdata('user_id');
       $role = $this->session->userdata('role_id');
       $data = [
-         'title' => "Profil",
-         'data' => $this->pm->get_data_by_id($user_id),
+         'title' => "Desa",
+         'data' =>  $this->bm->get_by_id("desa", 1),
       ];
-      if ($role === 1) {
-         $data['data'] = $this->bm->get_by_id("users", $user_id);
-      }
-      if ($role === 2) {
-         $data['data'] = $this->pm->get_data_by_id($user_id);
-      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
-      if ($role === 1) {
-         $this->load->view('setting/profil/admin');
-      }
-      if ($role === 2) {
-         $this->load->view('setting/profil/index');
-      }
+      $this->load->view('setting/desa/index');
       $this->load->view('templates/footer');
    }
 
    public function edit($id)
    {
+      $this->_validation();
+      $user_id = $this->session->userdata('user_id');
       $role = $this->session->userdata('role_id');
-      $result = false;
-      if ($role === 1) {
-         $result = $this->bm->update('users', $id, $this->_payload_image());
-      }
-      if ($role === 2) {
-         $result = $this->bm->update('penduduk', $id, $this->_payload_image());
-      }
-      if ($result) {
-         $this->notification->notify_success('setting/profil', 'Berhasil merubah data');
+      $data = [
+         'title' => "Desa",
+         'detail' =>  $this->bm->get_by_id("desa", 1),
+      ];
+      if ($this->form_validation->run() == false) {
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar');
+         $this->load->view('templates/topbar');
+         $this->load->view('setting/desa/edit');
+         $this->load->view('templates/footer');
       } else {
-         $this->notification->notify_error('setting/profil', 'Gagal merubah data');
+         $result = $this->bm->update('desa', $id, $this->_payload());
+         if ($result) {
+            $this->notification->notify_success('setting/desa', 'Berhasil merubah data');
+         } else {
+            $this->notification->notify_error('setting/desa', 'Gagal merubah data');
+         }
       }
+   }
+
+   public function edit_image($id)
+   {
+      $result = $this->bm->update('desa', $id, $this->_payload_image());
+      if ($result) {
+         $this->notification->notify_success('setting/desa', 'Berhasil merubah data');
+      } else {
+         $this->notification->notify_error('setting/desa', 'Gagal merubah data');
+      }
+   }
+
+   public function edit_profil($id)
+   {
+      $result = $this->bm->update('desa', $id, $this->_payload());
+      if ($result) {
+         $this->notification->notify_success('setting/desa', 'Berhasil merubah data');
+      } else {
+         $this->notification->notify_error('setting/desa', 'Gagal merubah data');
+      }
+   }
+
+   public function _payload()
+   {
+      $n_desa = htmlspecialchars($this->input->post('n_desa'));
+      $n_kepala_desa = htmlspecialchars($this->input->post('n_kepala_desa'));
+      $alamat = htmlspecialchars($this->input->post('alamat'));
+      $payload = [
+         'n_desa' => $n_desa,
+         'n_kepala_desa' => $n_kepala_desa,
+         'alamat' => $alamat
+      ];
+      return $payload;
    }
 
    public function _payload_image()
    {
-      $config['upload_path'] = './assets/images/profil/';
+      $config['upload_path'] = './assets/images/logos/';
       $config['allowed_types'] = 'jpg|jpeg|png|gif';
       $config['max_size'] = 1024;
 
       $this->load->library('upload', $config);
 
       if (!$this->upload->do_upload('gambar')) {
-         $this->notification->notify_error('setting/profil', 'Ukuran gambar terlalu besar atau gambar tidak valid');
+         $this->notification->notify_error('setting/desa', 'Ukuran gambar terlalu besar atau gambar tidak valid');
       } else {
          var_dump($this->upload->data());
          $data = $this->upload->data();
@@ -76,8 +106,8 @@ class Desa extends CI_Controller
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
-         'required' => 'Nama harus diisi',
+      $this->form_validation->set_rules('n_desa', 'Nama Desa', 'required|trim', [
+         'required' => 'Nama Desa harus diisi',
       ]);
    }
 }

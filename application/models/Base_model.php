@@ -37,8 +37,11 @@ class Base_model extends CI_Model
       return $this->db->delete($table);
    }
 
-   public function get_count($table)
+   public function get_count($table, $status = null)
    {
+      if ($status) {
+         $this->db->where('s_pengajuan', $status);
+      }
       return $this->db->get($table)->num_rows();
    }
 }

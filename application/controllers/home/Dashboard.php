@@ -34,13 +34,13 @@ class Dashboard extends CI_Controller
       $role = $this->session->userdata('role_id');
       $data = [
          'title' => "dashboard",
-         'berita' => $this->bm->get_all("berita"),
+         'detail' => $this->bm->get_by_id("berita", $id),
          'schedule' => $this->bm->get_all("schedule")
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
-      $this->load->view('home/user');
+      $this->load->view('informasi/berita/detail');
       $this->load->view('templates/footer');
    }
 }

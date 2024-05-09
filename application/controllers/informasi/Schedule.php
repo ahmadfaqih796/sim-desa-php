@@ -51,8 +51,8 @@ class Schedule extends CI_Controller
       $this->_validation();
       $data = [
          'title' => "Jadwal Wirid Akbar",
-         'data' => $this->bm->get_all('dusun'),
-         'detail' => $this->bm->get_by_id('dusun', $id),
+         'data' => $this->bm->get_all('schedule'),
+         'detail' => $this->bm->get_by_id('schedule', $id),
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);
@@ -61,7 +61,7 @@ class Schedule extends CI_Controller
          $this->load->view('informasi/schedule/edit');
          $this->load->view('templates/footer');
       } else {
-         $result = $this->bm->update('dusun', $id, $this->_payload());
+         $result = $this->bm->update('schedule', $id, $this->_payload());
          if ($result) {
             $this->notification->notify_success('informasi/schedule', 'Berhasil merubah data');
          } else {

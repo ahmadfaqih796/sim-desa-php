@@ -37,6 +37,9 @@
                         <td><?= $field['tanggal'] ?></td>
                         <td><?= $field['pukul'] ?></td>
                         <td style="width: 80px;">
+                           <a href="<?= base_url('informasi/schedule/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                              <i class="fas fa-edit"></i>
+                           </a>
                            <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
                               <i class="fas fa-trash"></i>
                            </button>
@@ -53,8 +56,8 @@
 
 <script>
    function confirmDelete(id) {
-      if (confirm("Apakah Anda yakin ingin menghapus data penerimaan BLT ini?")) {
-         window.location.href = "<?= base_url('informasi/blt/delete/') ?>" + id;
+      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
+         window.location.href = "<?= base_url('informasi/schedule/delete/') ?>" + id;
       }
    }
 </script>

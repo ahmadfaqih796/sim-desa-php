@@ -29,8 +29,6 @@ class Desa extends CI_Controller
    public function edit($id)
    {
       $this->_validation();
-      $user_id = $this->session->userdata('user_id');
-      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Desa",
          'detail' =>  $this->bm->get_by_id("desa", 1),
@@ -54,16 +52,6 @@ class Desa extends CI_Controller
    public function edit_image($id)
    {
       $result = $this->bm->update('desa', $id, $this->_payload_image());
-      if ($result) {
-         $this->notification->notify_success('setting/desa', 'Berhasil merubah data');
-      } else {
-         $this->notification->notify_error('setting/desa', 'Gagal merubah data');
-      }
-   }
-
-   public function edit_profil($id)
-   {
-      $result = $this->bm->update('desa', $id, $this->_payload());
       if ($result) {
          $this->notification->notify_success('setting/desa', 'Berhasil merubah data');
       } else {

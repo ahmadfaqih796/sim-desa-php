@@ -16,7 +16,7 @@
                   <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>
                   <?= $this->session->flashdata('message'); ?>
                </div>
-               <form action="<?= base_url('setting/desa/edit/' . $data['id']) ?>" method="post" enctype="multipart/form-data">
+               <form action="<?= base_url('setting/desa/edit_image/' . $data['id']) ?>" method="post" enctype="multipart/form-data">
                   <input type="hidden" name="old_gambar" value="<?= $data['photo'] ?>">
                   <div class="mb-3">
                      <input type="file" class="form-control <?= form_error('gambar') ? 'is-invalid' : '' ?>" id="gambar" name="gambar">

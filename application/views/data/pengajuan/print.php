@@ -155,6 +155,10 @@
    <p>
       Demikian Surat Keterangan ini dibuat untuk dipergunakan seperlunya.
    </p>
+   <div style="width: 50%;float: right;">
+      <p>Dibuat di : Ulumamis Situnggaling</p>
+      <p>Pada Tanggal : <?= date('d-m-Y') ?></p>
+   </div>
    <div style="width: 100%;">
       <div class="ttd" align="left" style="width: 50%;float: left;">
          <p>Tanda Tangan Pemegang</p>
@@ -165,8 +169,6 @@
          <p>(<?= $detail['fullname'] ?>)</p>
       </div>
       <div class="ttd" align="right" style="width: 50%;float: right;">
-         <p>Dibuat di : Ulumamis Situnggaling</p>
-         <p>Pada Tanggal : <?= date('d-m-Y') ?></p>
          <p style="text-align: center;">Kepala Desa Ullumamis Situnggaling</p>
          <br style="margin-top: -10cm; margin-bottom: -20cm;">
          <br>

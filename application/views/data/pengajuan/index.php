@@ -27,9 +27,7 @@
                      <th scope="col">Status</th>
                      <th scope="col">Tanggal</th>
                      <th scope="col">Layanan</th>
-                     <?php if ($role == 1) : ?>
-                        <th scope="col">Action</th>
-                     <?php endif; ?>
+                     <th scope="col">Action</th>
                   </tr>
                </thead>
                <tbody>
@@ -59,26 +57,34 @@
                         </td>
                         <td><?= $field['tgl_pengajuan'] ?></td>
                         <td><?= $field['layanan'] ?></td>
-                        <?php if ($role == 1) : ?>
-                           <td style="width: 100px;">
-                              <?php if ($status == "Proses") : ?>
+                        <td style="width: 100px;">
+                           <?php if ($status == "Proses") : ?>
+                              <?php if ($role == 1) : ?>
                                  <a href="<?= base_url('data/pengajuan/edit_pengambilan/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-warning btn-sm">
                                     <i class="fas fa-edit"></i>
                                  </a>
                               <?php endif; ?>
-                              <?php if ($status == "Pengambilan") : ?>
-                                 <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
-                                    <i class="fas fa-print"></i>
-                                 </a>
-                                 <!-- <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
-                                    <i class="fas fa-edit"></i>
-                                 </a> -->
-                              <?php endif; ?>
                               <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-trash"></i>
                               </button>
-                           </td>
-                        <?php endif; ?>
+                           <?php endif; ?>
+                           <?php if ($status == "Pengambilan") : ?>
+                              <!-- <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
+                                 <i class="fas fa-edit"></i>
+                              </a> -->
+                              <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdateStatus(<?= $field['id_table'] ?>)">
+                                 <i class="fas fa-edit"></i>
+                              </button>
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
+                                 <i class="fas fa-print"></i>
+                              </a>
+                           <?php endif; ?>
+                           <?php if ($status == "Selesai") : ?>
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-info btn-sm">
+                                 <i class="fas fa-print"></i>
+                              </a>
+                           <?php endif; ?>
+                        </td>
                      </tr>
                   <?php $i++;
                   endforeach; ?>
@@ -90,6 +96,12 @@
 </div>
 
 <script>
+   function confirmUpdateStatus(id) {
+      if (confirm("Apakah Anda yakin ingin mengubah status ?")) {
+         window.location.href = "<?= base_url('data/pengajuan/update_status/') ?>" + id;
+      }
+   }
+
    function confirmDelete(id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini ?")) {
          window.location.href = "<?= base_url('data/pengajuan/delete/') ?>" + id;

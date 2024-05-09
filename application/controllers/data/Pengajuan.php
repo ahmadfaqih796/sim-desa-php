@@ -98,7 +98,7 @@ class Pengajuan extends CI_Controller
    {
       $this->_validation("selesai");
       $data = [
-         'title' => "Pengajuan",
+         'title' => "Status Selesai",
          'data' => $this->bm->get_all('pengajuan'),
          'detail' => $this->bm->get_by_id('pengajuan', $id),
       ];
@@ -118,6 +118,15 @@ class Pengajuan extends CI_Controller
       }
    }
 
+   public function update_status($id)
+   {
+      $result = $this->bm->update('pengajuan', $id, $this->_payload("selesai"));
+      if ($result) {
+         $this->notification->notify_success('data/pengajuan', 'Berhasil merubah status selesai');
+      } else {
+         $this->notification->notify_error('data/pengajuan', 'Gagal merubah status selesai');
+      }
+   }
    public function delete($id)
    {
       // var_dump($id);
@@ -149,7 +158,7 @@ class Pengajuan extends CI_Controller
 
       if ($type == 'selesai') {
          $payload = [
-            'tgl_selesai' => $tgl_selesai,
+            'tgl_selesai' => date("Y-m-d"),
             's_pengajuan' => 'Selesai',
          ];
          return $payload;

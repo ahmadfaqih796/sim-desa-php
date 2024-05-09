@@ -15,9 +15,9 @@
       <div class="card-body">
          <form action="<?= base_url('informasi/blt/add') ?>" method="post">
             <div class="mb-3">
-               <label for="penduduk_id" class="form-label">Layanan</label>
+               <label for="penduduk_id" class="form-label">Penduduk</label>
                <select name="penduduk_id" id="penduduk_id" class="form-control" required>
-                  <option value="">--Pilih Layanan--</option>
+                  <option value="">--Pilih Penduduk--</option>
                   <?php foreach ($penduduk as $data) :  ?>
                      <option value="<?= $data['id'] ?>" <?= set_select('id', $data['id'], (!empty($_POST['id']) && $_POST['id'] == $data['id'])); ?>><?= $data['fullname'] . ' - ' . $data['nik'] . ' - ' . $data['n_dusun'] ?></option>
                   <?php endforeach; ?>

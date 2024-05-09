@@ -56,7 +56,7 @@ class Penduduk_model extends CI_Model
 
    public function get_blt()
    {
-      $this->db->select('p.*, d.n_dusun');
+      $this->db->select('p.*, b.id as id_table, d.n_dusun');
       $this->db->from('penduduk p');
       $this->db->join('blt b', 'b.penduduk_id = p.id', 'left');
       $this->db->join('dusun d', 'p.dusun_id = d.id', 'left');

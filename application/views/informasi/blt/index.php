@@ -35,7 +35,7 @@
                         <td><?= $field['fullname'] ?></td>
                         <td><?= $field['n_dusun'] ?></td>
                         <td style="width: 80px;">
-                           <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
+                           <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id_table'] ?>)">
                               <i class="fas fa-trash"></i>
                            </button>
                         </td>
@@ -51,8 +51,8 @@
 
 <script>
    function confirmDelete(id) {
-      if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
-         window.location.href = "<?= base_url('management/dusun/delete/') ?>" + id;
+      if (confirm("Apakah Anda yakin ingin menghapus data penerimaan BLT ini?")) {
+         window.location.href = "<?= base_url('informasi/blt/delete/') ?>" + id;
       }
    }
 </script>

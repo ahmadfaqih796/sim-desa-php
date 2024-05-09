@@ -71,7 +71,7 @@ $sidebarMenu = array(
             "role" => array(1),
          ),
          array(
-            "url" => "informasi/jadwal",
+            "url" => "informasi/schedule",
             "text" => "Jadwal Wirid Akbar",
             "icon" => "ti ti-file",
             "role" => array(1),

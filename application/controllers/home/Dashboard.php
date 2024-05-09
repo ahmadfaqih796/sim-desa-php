@@ -28,4 +28,19 @@ class Dashboard extends CI_Controller
       }
       $this->load->view('templates/footer');
    }
+
+   public function berita($id)
+   {
+      $role = $this->session->userdata('role_id');
+      $data = [
+         'title' => "dashboard",
+         'berita' => $this->bm->get_all("berita"),
+         'schedule' => $this->bm->get_all("schedule")
+      ];
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/sidebar');
+      $this->load->view('templates/topbar');
+      $this->load->view('home/user');
+      $this->load->view('templates/footer');
+   }
 }

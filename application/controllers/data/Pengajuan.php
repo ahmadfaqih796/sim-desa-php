@@ -111,9 +111,9 @@ class Pengajuan extends CI_Controller
       } else {
          $result = $this->bm->update('pengajuan', $id, $this->_payload("selesai"));
          if ($result) {
-            $this->notification->notify_success('data/pengajuan', 'Berhasil merubah data');
+            $this->notification->notify_success('data/pengajuan', 'Berhasil merubah status selesai');
          } else {
-            $this->notification->notify_error('data/pengajuan', 'Gagal merubah data');
+            $this->notification->notify_error('data/pengajuan', 'Gagal merubah status selesai');
          }
       }
    }
@@ -157,11 +157,27 @@ class Pengajuan extends CI_Controller
       }
 
       if ($type == 'selesai') {
-         $payload = [
-            'tgl_selesai' => date("Y-m-d"),
-            's_pengajuan' => 'Selesai',
-         ];
-         return $payload;
+         $config['upload_path'] = './assets/images/bukti/';
+         $config['allowed_types'] = 'jpg|jpeg|png|gif';
+         $config['max_size'] = 1024;
+
+         $this->load->library('upload', $config);
+
+         if (!$this->upload->do_upload('bukti')) {
+            $payload = [
+               'tgl_selesai' => date("Y-m-d"),
+               's_pengajuan' => 'Selesai',
+            ];
+            return $payload;
+         } else {
+            $data = $this->upload->data();
+            $payload = [
+               'tgl_selesai' => date("Y-m-d"),
+               's_pengajuan' => 'Selesai',
+               'bukti' => $data['file_name']
+            ];
+            return $payload;
+         }
       }
 
       $currentDateTimeString = $currentDateTime->format('YmdHis');

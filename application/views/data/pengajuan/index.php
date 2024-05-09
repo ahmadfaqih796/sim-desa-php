@@ -69,9 +69,9 @@
                               </button>
                            <?php endif; ?>
                            <?php if ($status == "Pengambilan") : ?>
-                              <!-- <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
+                              <a href="<?= base_url('data/pengajuan/edit_selesai/' . $field['id_table']) ?>" class="btn btn-info btn-sm">
                                  <i class="fas fa-edit"></i>
-                              </a> -->
+                              </a>
                               <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdateStatus(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-edit"></i>
                               </button>

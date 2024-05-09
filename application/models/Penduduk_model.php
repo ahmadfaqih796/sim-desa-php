@@ -53,4 +53,14 @@ class Penduduk_model extends CI_Model
       $this->db->where('p.id', $id);
       return $this->db->get()->row_array();
    }
+
+   public function get_blt()
+   {
+      $this->db->select('p.*, d.n_dusun');
+      $this->db->from('penduduk p');
+      $this->db->join('blt b', 'b.penduduk_id = p.id', 'left');
+      $this->db->join('dusun d', 'p.dusun_id = d.id', 'left');
+      $this->db->where('b.penduduk_id IS NULL');
+      return $this->db->get()->result_array();
+   }
 }

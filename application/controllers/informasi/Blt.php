@@ -30,19 +30,20 @@ class Blt extends CI_Controller
       $data = [
          'title' => "Penerimaan BLT",
          'data' => $this->bm->get_all('dusun'),
+         'penduduk' => $this->pm->get_blt(),
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar', $data);
          $this->load->view('templates/topbar', $data);
-         $this->load->view('management/dusun/add', $data);
+         $this->load->view('informasi/blt/add', $data);
          $this->load->view('templates/footer', $data);
       } else {
-         $result = $this->bm->add('dusun', $this->_payload());
+         $result = $this->bm->add('blt', $this->_payload());
          if ($result) {
-            $this->notification->notify_success('management/dusun', 'Berhasil menambahkan data');
+            $this->notification->notify_success('informasi/blt', 'Berhasil menambahkan data');
          } else {
-            $this->notification->notify_error('management/dusun', 'Gagal menambahkan data');
+            $this->notification->notify_error('informasi/blt', 'Gagal menambahkan data');
          }
       }
    }
@@ -59,40 +60,40 @@ class Blt extends CI_Controller
          $this->load->view('templates/header', $data);
          $this->load->view('templates/sidebar');
          $this->load->view('templates/topbar');
-         $this->load->view('management/dusun/edit');
+         $this->load->view('informasi/blt/edit');
          $this->load->view('templates/footer');
       } else {
          $result = $this->bm->update('dusun', $id, $this->_payload());
          if ($result) {
-            $this->notification->notify_success('management/dusun', 'Berhasil merubah data');
+            $this->notification->notify_success('informasi/blt', 'Berhasil merubah data');
          } else {
-            $this->notification->notify_error('management/dusun', 'Gagal merubah data');
+            $this->notification->notify_error('informasi/blt', 'Gagal merubah data');
          }
       }
    }
 
    public function delete($id)
    {
-      $result = $this->bm->delete('dusun', $id);
+      $result = $this->bm->delete('blt', $id);
       if ($result) {
-         $this->notification->notify_success('management/dusun', 'Berhasil menghapus data');
+         $this->notification->notify_success('informasi/blt', 'Berhasil menghapus data');
       } else {
-         $this->notification->notify_error('management/dusun', 'Gagal menghapus data');
+         $this->notification->notify_error('informasi/blt', 'Gagal menghapus data');
       }
    }
 
    public function _payload()
    {
-      $n_dusun = htmlspecialchars($this->input->post('n_dusun'));
+      $penduduk_id = htmlspecialchars($this->input->post('penduduk_id'));
       $payload = [
-         'n_dusun' => $n_dusun,
+         'penduduk_id' => $penduduk_id,
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_dusun', 'Nama', 'required|trim', [
+      $this->form_validation->set_rules('penduduk_id', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
    }

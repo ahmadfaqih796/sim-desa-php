@@ -39,6 +39,7 @@
       .table tr th {
          font-size: 12px;
          padding: 5px;
+         vertical-align: top;
          /* border: 1px solid black; */
       }
 
@@ -63,14 +64,14 @@
    <table class="header">
       <tr>
          <td>
-            <img src="<?= $_SERVER['DOCUMENT_ROOT']; ?>/assets/images/logos/desa_logo.png" border="0" alt="Logo" class="logo">
+            <img src="<?= $_SERVER['DOCUMENT_ROOT']; ?>/assets/images/logos/<?= $desa['photo'] ?>" width="100 " border="0" alt="Logo" class="logo">
          </td>
          <td>
             <h1>PEMERINTAH KABUPATEN MEDAN</h1>
             <h1>KECAMATAN KOTA BANGUN</h1>
-            <h1>Kepala Desa Ulumamis Situnggaling</h1>
+            <h1>Kepala Desa <?= $desa['n_desa'] ?></h1>
             <br>
-            <p>Jl. K.L. Yos Sudarso KM. 11, Kota Bangun, Kec. Medan Deli, Kota Medan, Sumatera Utara 20244</p>
+            <p><?= $desa['alamat'] ?></p>
             <!-- <p>MEDAN</p> -->
          </td>
       </tr>
@@ -86,17 +87,17 @@
          <tr>
             <td>Nama</td>
             <td>:</td>
-            <td>AMIN FAUZI</td>
+            <td><?= $desa['n_kepala_desa'] ?></td>
          </tr>
          <tr>
             <td>Jabatan</td>
             <td>:</td>
-            <td>Kepala Desa Ulumamis Situnggaling</td>
+            <td>Kepala Desa <?= $desa['n_desa'] ?></td>
          </tr>
          <tr>
             <td>Alamat</td>
             <td>:</td>
-            <td>Jl. K.L. Yos Sudarso KM. 11, Kota Bangun</td>
+            <td><?= $desa['alamat'] ?></td>
          </tr>
       </thead>
    </table>

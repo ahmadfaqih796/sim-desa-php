@@ -13,8 +13,6 @@ class Desa extends CI_Controller
 
    public function index()
    {
-      $user_id = $this->session->userdata('user_id');
-      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Desa",
          'data' =>  $this->bm->get_by_id("desa", 1),
@@ -31,7 +29,7 @@ class Desa extends CI_Controller
       $this->_validation();
       $data = [
          'title' => "Desa",
-         'detail' =>  $this->bm->get_by_id("desa", 1),
+         'detail' =>  $this->bm->get_by_id("desa", 1)
       ];
       if ($this->form_validation->run() == false) {
          $this->load->view('templates/header', $data);

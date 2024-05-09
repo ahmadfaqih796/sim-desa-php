@@ -38,6 +38,7 @@ class Pengajuan extends CI_Controller
          'title' => 'Surat Pengantar',
          'no' => 1,
          'detail' => $this->pm->get_pengajuan_by_id($id),
+         'desa' =>  $this->bm->get_by_id("desa", 1)
       ];
       $html = $this->load->view('data/pengajuan/print', $data, true);
 

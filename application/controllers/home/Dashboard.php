@@ -12,14 +12,20 @@ class Dashboard extends CI_Controller
 
    public function index()
    {
+      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "dashboard",
-         'user' => $this->um->check_user($this->session->userdata('username')),
+         'berita' => $this->bm->get_all("berita"),
+         'schedule' => $this->bm->get_all("schedule")
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
-      $this->load->view('home/dashboard');
+      if ($role == 2) {
+         $this->load->view('home/user');
+      } else {
+         $this->load->view('home/dashboard');
+      }
       $this->load->view('templates/footer');
    }
 }

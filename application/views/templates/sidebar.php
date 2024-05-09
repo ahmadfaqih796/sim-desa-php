@@ -8,7 +8,7 @@ $sidebarMenu = array(
             "url" => "home/dashboard",
             "text" => "Dashboard",
             "icon" => "ti ti-layout-dashboard",
-            "role" => array(1),
+            "role" => array(1, 2),
          ),
       )
    ),
@@ -85,8 +85,14 @@ $sidebarMenu = array(
          array(
             "url" => "setting/profil",
             "text" => "Profil",
-            "icon" => "ti ti-file",
+            "icon" => "ti ti-user",
             "role" => array(1, 2),
+         ),
+         array(
+            "url" => "setting/desa",
+            "text" => "Desa",
+            "icon" => "ti ti-home",
+            "role" => array(1),
          ),
       )
    ),
@@ -98,8 +104,23 @@ if (!$userRole) {
 }
 $filteredMenu = array();
 
+// foreach ($sidebarMenu as $menu) {
+//    if (in_array($userRole, $menu['role'])) {
+//       $filteredMenu[] = $menu;
+//    }
+// }
+
 foreach ($sidebarMenu as $menu) {
-   if (in_array($userRole, $menu['role'])) {
+   $filteredSubmenu = array();
+
+   foreach ($menu['submenu'] as $submenu) {
+      if (in_array($userRole, $submenu['role'])) {
+         $filteredSubmenu[] = $submenu;
+      }
+   }
+
+   if (!empty($filteredSubmenu)) {
+      $menu['submenu'] = $filteredSubmenu;
       $filteredMenu[] = $menu;
    }
 }

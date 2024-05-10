@@ -141,11 +141,11 @@ class Pengajuan extends CI_Controller
 
    public function _payload($type = null)
    {
-      $penduduk_id = htmlspecialchars($this->input->post('penduduk_id', true));
-      $tgl_pengajuan = htmlspecialchars($this->input->post('tgl_pengajuan', true));
-      $tgl_pengambilan = htmlspecialchars($this->input->post('tgl_pengambilan', true));
-      $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai', true));
-      $layanan = htmlspecialchars($this->input->post('layanan', true));
+      $penduduk_id = htmlspecialchars($this->input->post('penduduk_id'));
+      $tgl_pengajuan = htmlspecialchars($this->input->post('tgl_pengajuan'));
+      $tgl_pengambilan = htmlspecialchars($this->input->post('tgl_pengambilan'));
+      $tgl_selesai = htmlspecialchars($this->input->post('tgl_selesai'));
+      $layanan = htmlspecialchars($this->input->post('layanan'));
 
       $currentDateTime = new DateTime();
 

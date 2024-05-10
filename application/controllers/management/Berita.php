@@ -82,9 +82,9 @@ class Berita extends CI_Controller
    public function _payload($type = null)
    {
       $judul = htmlspecialchars($this->input->post('judul'));
-      $deskripsi = htmlspecialchars($this->input->post('deskripsi', true));
-      $gambar = htmlspecialchars($this->input->post('gambar'), true);
-      $old_gambar = htmlspecialchars($this->input->post('old_gambar'), true);
+      $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+      $gambar = htmlspecialchars($this->input->post('gambar'));
+      $old_gambar = htmlspecialchars($this->input->post('old_gambar'));
 
       // if ($type == 'patch') {
 

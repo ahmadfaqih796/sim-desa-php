@@ -85,18 +85,18 @@ class Penduduk extends CI_Controller
 
    public function _payload($type = null)
    {
-      $fullname = htmlspecialchars($this->input->post('fullname', true));
-      $nik = htmlspecialchars($this->input->post('nik', true));
+      $fullname = htmlspecialchars($this->input->post('fullname'));
+      $nik = htmlspecialchars($this->input->post('nik'));
       $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
-      $dusun_id = htmlspecialchars($this->input->post('dusun_id', true));
-      $tempat_lahir = htmlspecialchars($this->input->post('tempat_lahir', true));
-      $tgl_lahir = htmlspecialchars($this->input->post('tgl_lahir', true));
-      $agama = htmlspecialchars($this->input->post('agama', true));
-      $s_nikah = htmlspecialchars($this->input->post('s_nikah', true));
-      $s_hubungan = htmlspecialchars($this->input->post('s_hubungan', true));
-      $pekerjaan = htmlspecialchars($this->input->post('pekerjaan', true));
-      $pendidikan = htmlspecialchars($this->input->post('pendidikan', true));
-      $kk = htmlspecialchars($this->input->post('kk', true));
+      $dusun_id = htmlspecialchars($this->input->post('dusun_id'));
+      $tempat_lahir = htmlspecialchars($this->input->post('tempat_lahir'));
+      $tgl_lahir = htmlspecialchars($this->input->post('tgl_lahir'));
+      $agama = htmlspecialchars($this->input->post('agama'));
+      $s_nikah = htmlspecialchars($this->input->post('s_nikah'));
+      $s_hubungan = htmlspecialchars($this->input->post('s_hubungan'));
+      $pekerjaan = htmlspecialchars($this->input->post('pekerjaan'));
+      $pendidikan = htmlspecialchars($this->input->post('pendidikan'));
+      $kk = htmlspecialchars($this->input->post('kk'));
       $payload = [
          'fullname' => $fullname,
          'nik' => $nik,

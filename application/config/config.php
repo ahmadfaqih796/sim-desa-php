@@ -25,6 +25,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 
 $config['base_url'] = 'http://localhost:3000/';
+// $config['base_url'] = 'https://stagingproject.skom.id/sim-desa/';
 // $config['base_url'] = 'https://cb3b-2a09-bac5-3a23-15f-00-23-1c9.ngrok-free.app/';
 
 /*

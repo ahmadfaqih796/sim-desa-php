@@ -1,5 +1,7 @@
 .DS_Store
 
+.env
+
 assets/images/berita/*
 assets/images/profil/*
 assets/images/bukti/*

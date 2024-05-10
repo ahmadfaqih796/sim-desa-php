@@ -157,7 +157,7 @@
       Demikian Surat Keterangan ini dibuat untuk dipergunakan seperlunya.
    </p>
    <div style="width: 50%;float: right;">
-      <p>Dibuat di : Ulumamis Situnggaling</p>
+      <p>Dibuat di : <?= $desa['n_desa'] ?></p>
       <p>Pada Tanggal : <?= date('d-m-Y') ?></p>
    </div>
    <div style="width: 100%;">

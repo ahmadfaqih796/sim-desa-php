@@ -19,7 +19,7 @@ class Laporan extends CI_Controller
             'dusun' => $this->bm->get_count('dusun'),
             'pengajuan' => array(
                'proses' => $this->bm->get_count('pengajuan', 'Pengajuan'),
-               'pengembalian' => $this->bm->get_count('pengajuan', 'Pengembalian'),
+               'pengambilan' => $this->bm->get_count('pengajuan', 'Pengambilan'),
                'selesai' => $this->bm->get_count('pengajuan', 'Selesai'),
             ),
          )

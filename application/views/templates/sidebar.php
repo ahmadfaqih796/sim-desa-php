@@ -56,7 +56,7 @@ $sidebarMenu = array(
             "url" => "data/laporan",
             "text" => "Laporan",
             "icon" => "ti ti-file",
-            "role" => array(1, 2),
+            "role" => array(1),
          ),
       )
    ),
@@ -152,8 +152,25 @@ foreach ($sidebarMenu as $menu) {
                      <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
                      <span class="hide-menu"><?= $menuItem['text'] ?></span>
                   </li>
-                  <?php foreach ($menuItem['submenu'] as $subMenuItem) : ?>
-                     <?php $isActive = (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], $subMenuItem['url']) !== false) ? 'active' : ''; ?>
+                  <?php foreach ($menuItem['submenu'] as $subMenuItem) :
+
+                     $url = $_SERVER['REQUEST_URI'];
+                     $parsed_url = parse_url($url);
+                     $path = $parsed_url['path'];
+                     $path_parts = explode('/', trim($path, '/'));
+                     $desired_url = '/' . $path_parts[0];
+
+                     // echo $_SERVER['REQUEST_URI'];
+                     // echo '<br>';
+                     // echo strpos($url, $subMenuItem['url']);
+                     // echo '<br>';
+                     // echo $subMenuItem['url'];
+                     // echo '<br>';
+                     // echo $desired_url;
+
+
+                     $isActive = (isset($_SERVER['REQUEST_URI']) && strpos($desired_url, $subMenuItem['url']) != false) ? 'active' : '';
+                  ?>
                      <li class="sidebar-item <?= $isActive ?>">
                         <a class="sidebar-link" href="<?= base_url($subMenuItem['url']) ?>" aria-expanded="false">
                            <span>
@@ -163,7 +180,7 @@ foreach ($sidebarMenu as $menu) {
                         </a>
                      </li>
                   <?php endforeach; ?>
-               <?php else : ?>
+                  <!-- <?php else : ?>
                   <?php $isActive = (isset($_SERVER['REQUEST_URI']) && strpos($_SERVER['REQUEST_URI'], $menuItem['url']) !== false) ? 'active' : ''; ?>
                   <li class="sidebar-item <?= $isActive ?>">
                      <a class="sidebar-link" href="<?= base_url($menuItem['url']) ?>" aria-expanded="false">
@@ -173,8 +190,8 @@ foreach ($sidebarMenu as $menu) {
                         <span class="hide-menu"><?= $menuItem['text'] ?></span>
                      </a>
                   </li>
-               <?php endif; ?>
-            <?php endforeach; ?>
+               <?php endif; ?> -->
+               <?php endforeach; ?>
          </ul>
       </nav>
       <!-- End Sidebar navigation -->

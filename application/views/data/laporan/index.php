@@ -47,10 +47,10 @@
                      </tr>
                      <tr>
                         <td>
-                           <h5 class="mb-0">Pengembalian</h5>
+                           <h5 class="mb-0">Pengambilan</h5>
                         </td>
                         <td>
-                           <h1><?= $total['pengajuan']['pengembalian'] ?></h1>
+                           <h1><?= $total['pengajuan']['pengambilan'] ?></h1>
                         </td>
                      </tr>
                      <tr>

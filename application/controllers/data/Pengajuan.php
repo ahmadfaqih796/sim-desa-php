@@ -42,9 +42,9 @@ class Pengajuan extends CI_Controller
       ];
       // $html = $this->load->view('data/pengajuan/print', $data, true);
       $html = $this->load->view('data/cetak/sk_tidak_mampu', $data, true);
+      $mpdf->Output('surat_pengantar_tidak_mampu.pdf', 'D');
 
       $mpdf->WriteHTML($html);
-      $mpdf->Output('surat_pengantar_tidak_mampu.pdf', 'D');
    }
 
    public function add()

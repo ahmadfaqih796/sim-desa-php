@@ -40,10 +40,11 @@ class Pengajuan extends CI_Controller
          'detail' => $this->pm->get_pengajuan_by_id($id),
          'desa' =>  $this->bm->get_by_id("desa", 1)
       ];
-      $html = $this->load->view('data/pengajuan/print', $data, true);
+      // $html = $this->load->view('data/pengajuan/print', $data, true);
+      $html = $this->load->view('data/cetak/sk_tidak_mampu', $data, true);
 
       $mpdf->WriteHTML($html);
-      $mpdf->Output('surat_pengantar.pdf', 'D');
+      $mpdf->Output('surat_pengantar_tidak_mampu.pdf', 'D');
    }
 
    public function add()

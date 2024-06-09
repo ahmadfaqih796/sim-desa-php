@@ -8,14 +8,21 @@ class Pengaduan extends CI_Controller
       parent::__construct();
       $this->load->library('session');
       $this->load->model('Base_model', 'bm');
+      $this->load->model('Penduduk_model', 'pm');
    }
 
    public function index()
    {
+      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Pengaduan",
-         'data' => $this->bm->get_all('pengaduan'),
+         'role' => $role,
       ];
+      if ($role == 1) {
+         $data['data'] = $this->pm->get_all_data('pengaduan');
+      } elseif ($role == 2) {
+         $data['data'] = $this->pm->get_all_data_by_penduduk('pengaduan', $this->session->userdata('user_id'));
+      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
@@ -81,23 +88,25 @@ class Pengaduan extends CI_Controller
 
    public function _payload()
    {
-      $n_jadwal = htmlspecialchars($this->input->post('n_jadwal'));
-      $lokasi = htmlspecialchars($this->input->post('lokasi'));
-      $tanggal = htmlspecialchars($this->input->post('tanggal'));
-      $pukul = htmlspecialchars($this->input->post('pukul'));
+      $judul = htmlspecialchars($this->input->post('judul'));
+      $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
+      $status = htmlspecialchars($this->input->post('status'));
+      $created_by = $this->session->userdata('fullname');
+      $penduduk_id = $this->session->userdata('user_id');
       $payload = [
-         'n_jadwal' => $n_jadwal,
-         'lokasi' => $lokasi,
-         'tanggal' => $tanggal,
-         'pukul' => $pukul,
+         'judul' => $judul,
+         'deskripsi' => $deskripsi,
+         // 'status' => $status,
+         'created_by' => $created_by,
+         'penduduk_id' => $penduduk_id
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('n_jadwal', 'Nama', 'required|trim', [
-         'required' => 'Nama harus diisi',
+      $this->form_validation->set_rules('judul', 'Judul', 'required|trim', [
+         'required' => 'Judul harus diisi',
       ]);
    }
 }

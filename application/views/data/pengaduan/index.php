@@ -6,9 +6,11 @@
                <h5 class="card-title mb-0"><?= $title ?></h5>
             </div>
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
-               <a href="<?= base_url('data/pengaduan/add') ?>" class="btn btn-primary ms-3">
-                  <i class="fas fa-plus"></i> Tambah
-               </a>
+               <?php if ($role == 2) : ?>
+                  <a href="<?= base_url('data/pengaduan/add') ?>" class="btn btn-primary ms-3">
+                     <i class="fas fa-plus"></i> Tambah
+                  </a>
+               <?php endif; ?>
             </div>
          </div>
       </div>
@@ -20,7 +22,9 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
-                     <th scope="col">Dusun</th>
+                     <th scope="col">Judul</th>
+                     <th scope="col">Deskripsi</th>
+                     <th scope="col">Created By</th>
                      <th scope="col">Action</th>
                   </tr>
                </thead>
@@ -30,13 +34,19 @@
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['judul'] ?></td>
+                        <td><?= $field['deskripsi'] ?></td>
+                        <td><?= $field['created_by'] ?></td>
                         <td style="width: 80px;">
-                           <a href="<?= base_url('data/pengaduan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
-                              <i class="fas fa-edit"></i>
-                           </a>
-                           <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
-                              <i class="fas fa-trash"></i>
-                           </button>
+                           <?php if ($role == 1) : ?>
+                              <a href="<?= base_url('data/pengaduan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                                 <i class="fas fa-edit"></i>
+                              </a>
+                           <?php endif; ?>
+                           <?php if ($role == 2 && $field['status'] == "pending") : ?>
+                              <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
+                                 <i class="fas fa-trash"></i>
+                              </button>
+                           <?php endif; ?>
                         </td>
                      </tr>
                   <?php $i++;

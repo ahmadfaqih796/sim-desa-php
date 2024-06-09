@@ -31,7 +31,20 @@
                   </tr>
                </thead>
                <tbody>
-                  <?php $i = 1;
+                  <?php
+                  $i = 1;
+                  function convertText($text = '')
+                  {
+                     // Ubah semua huruf menjadi huruf kecil
+                     $text = strtolower($text);
+                     // Hapus tanda kurung dan isinya
+                     $text = preg_replace('/\s*\([^)]*\)/', '', $text);
+                     // Ganti spasi dan tanda baca dengan underscore
+                     $text = preg_replace('/[\s\W]+/', '_', $text);
+                     // Trim underscore di awal dan akhir
+                     $text = trim($text, '_');
+                     return $text;
+                  }
                   foreach ($data as $field) :
                      $status = "";
                      $status_class = '';
@@ -77,7 +90,7 @@
                               <!-- <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdateStatus(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-edit"></i>
                               </button> -->
-                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-success btn-sm">
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . convertText($field['layanan'])) ?>" class="btn btn-success btn-sm">
                                  <i class="fas fa-print"></i>
                               </a>
                            <?php endif; ?>
@@ -85,7 +98,7 @@
                               <a href="<?= base_url('assets/images/bukti/' . $field['bukti']) ?>" class="btn btn-light btn-sm" target="_blank">
                                  <i class="fas fa-eye"></i>
                               </a>
-                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . $field['penduduk_id']) ?>" class="btn btn-success btn-sm">
+                              <a href="<?= base_url('data/pengajuan/print/' . $field['id_table'] . '/' . convertText($field['layanan'])) ?>" class="btn btn-success btn-sm">
                                  <i class="fas fa-print"></i>
                               </a>
                            <?php endif; ?>

@@ -30,7 +30,7 @@ class Pengajuan extends CI_Controller
       $this->load->view('templates/footer');
    }
 
-   public function print($id, $id_penduduk)
+   public function print($id, $sk = null)
    {
       require_once FCPATH . 'vendor/autoload.php';
       $mpdf = new \Mpdf\Mpdf();
@@ -40,11 +40,28 @@ class Pengajuan extends CI_Controller
          'detail' => $this->pm->get_pengajuan_by_id($id),
          'desa' =>  $this->bm->get_by_id("desa", 1)
       ];
-      // $html = $this->load->view('data/pengajuan/print', $data, true);
-      $html = $this->load->view('data/cetak/sk_tidak_mampu', $data, true);
-      $mpdf->Output('surat_pengantar_tidak_mampu.pdf', 'D');
-
-      $mpdf->WriteHTML($html);
+      function convertText($text)
+      {
+         // Ubah semua huruf menjadi huruf kecil
+         $text = strtolower($text);
+         // Hapus tanda kurung dan isinya
+         $text = preg_replace('/\s*\([^)]*\)/', '', $text);
+         // Ganti spasi dan tanda baca dengan underscore
+         $text = preg_replace('/[\s\W]+/', '_', $text);
+         // Trim underscore di awal dan akhir
+         $text = trim($text, '_');
+         return $text;
+      }
+      $surat = convertText($sk);
+      if ($surat == 'surat_keterangan_tidak_mampu') {
+         $html = $this->load->view('data/cetak/sk_tidak_mampu', $data, true);
+         $mpdf->WriteHTML($html);
+         $mpdf->Output('surat_pengantar_tidak_mampu.pdf', 'D');
+      } else {
+         $html = $this->load->view('data/pengajuan/print', $data, true);
+         $mpdf->WriteHTML($html);
+         $mpdf->Output('surat_pengantar.pdf', 'D');
+      }
    }
 
    public function add()

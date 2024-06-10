@@ -76,6 +76,16 @@ class Pengaduan extends CI_Controller
       }
    }
 
+   public function update($id)
+   {
+      $result = $this->bm->update('pengaduan', $id, ['status' => "acc"]);
+      if ($result) {
+         $this->notification->notify_success('data/pengaduan', 'Berhasil ubah status');
+      } else {
+         $this->notification->notify_error('data/pengaduan', 'Gagal ubah status');
+      }
+   }
+
    public function delete($id)
    {
       $result = $this->bm->delete('pengaduan', $id);

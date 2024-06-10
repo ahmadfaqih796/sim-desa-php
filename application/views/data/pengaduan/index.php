@@ -39,13 +39,13 @@
                         <td><?= $field['status'] ?></td>
                         <td><?= $field['created_by'] ?></td>
                         <td style="width: 80px;">
-                           <?php if ($role == 1) : ?>
-                              <a href="<?= base_url('data/pengaduan/edit/' . $field['id']) ?>" class="btn btn-success btn-sm">
+                           <?php if ($role == 1 && $field['status'] == "pending") : ?>
+                              <button type="button" class="btn btn-info btn-sm" onclick="confirmUpdate(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-edit"></i>
-                              </a>
+                              </button>
                            <?php endif; ?>
                            <?php if ($role == 2 && $field['status'] == "pending") : ?>
-                              <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
+                              <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id_table'] ?>)">
                                  <i class="fas fa-trash"></i>
                               </button>
                            <?php endif; ?>
@@ -61,6 +61,12 @@
 </div>
 
 <script>
+   function confirmUpdate(id) {
+      if (confirm("Apakah Anda yakin ingin mengubah status data ini?")) {
+         window.location.href = "<?= base_url('data/pengaduan/update/') ?>" + id;
+      }
+   }
+
    function confirmDelete(id) {
       if (confirm("Apakah Anda yakin ingin menghapus data ini?")) {
          window.location.href = "<?= base_url('data/pengaduan/delete/') ?>" + id;

@@ -24,6 +24,7 @@
                      <th scope="col">No</th>
                      <th scope="col">Judul</th>
                      <th scope="col">Deskripsi</th>
+                     <th scope="col">Status</th>
                      <th scope="col">Created By</th>
                      <th scope="col">Action</th>
                   </tr>
@@ -35,6 +36,7 @@
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
                         <td><?= $field['judul'] ?></td>
                         <td><?= $field['deskripsi'] ?></td>
+                        <td><?= $field['status'] ?></td>
                         <td><?= $field['created_by'] ?></td>
                         <td style="width: 80px;">
                            <?php if ($role == 1) : ?>

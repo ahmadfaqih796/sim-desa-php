@@ -15,7 +15,6 @@
       <div class="card-body">
          <?= validation_errors('<div class="alert alert-danger" role="alert">', '</div>') ?>
          <?= $this->session->flashdata('message'); ?>
-         <?= $this->uri->segment(4) ?>
          <form action="<?= base_url('data/acara/tamu/' . $this->uri->segment(4)) ?>" method="post">
             <div class="mb-3">
                <label for="n_tamu" class="form-label">Nama Tamu</label>

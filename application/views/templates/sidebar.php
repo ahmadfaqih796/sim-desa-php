@@ -64,6 +64,12 @@ $sidebarMenu = array(
             "icon" => "ti ti-file",
             "role" => array(1, 2),
          ),
+         array(
+            "url" => "data/acara",
+            "text" => "Acara",
+            "icon" => "ti ti-file",
+            "role" => array(1),
+         ),
       )
    ),
    array(

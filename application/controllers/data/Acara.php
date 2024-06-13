@@ -17,12 +17,8 @@ class Acara extends CI_Controller
       $data = [
          'title' => "Acara",
          'role' => $role,
+         'data' => $this->bm->get_all('acara'),
       ];
-      if ($role == 1) {
-         $data['data'] = $this->pm->get_all_data('acara');
-      } elseif ($role == 2) {
-         $data['data'] = $this->pm->get_all_data_by_penduduk('acara', $this->session->userdata('user_id'));
-      }
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
       $this->load->view('templates/topbar');
@@ -98,25 +94,21 @@ class Acara extends CI_Controller
 
    public function _payload()
    {
-      $judul = htmlspecialchars($this->input->post('judul'));
+      $n_acara = htmlspecialchars($this->input->post('n_acara'));
       $deskripsi = htmlspecialchars($this->input->post('deskripsi'));
-      $status = htmlspecialchars($this->input->post('status'));
-      $created_by = $this->session->userdata('fullname');
-      $penduduk_id = $this->session->userdata('user_id');
+      $tanggal =  htmlspecialchars($this->input->post('tanggal'));
       $payload = [
-         'judul' => $judul,
+         'n_acara' => $n_acara,
          'deskripsi' => $deskripsi,
-         // 'status' => $status,
-         'created_by' => $created_by,
-         'penduduk_id' => $penduduk_id
+         'tanggal' => $tanggal,
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('judul', 'Judul', 'required|trim', [
-         'required' => 'Judul harus diisi',
+      $this->form_validation->set_rules('n_acara', 'Nama', 'required|trim', [
+         'required' => 'Nama harus diisi',
       ]);
    }
 }

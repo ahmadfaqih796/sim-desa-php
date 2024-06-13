@@ -48,6 +48,28 @@ class Acara extends CI_Controller
       }
    }
 
+   public function tamu($id)
+   {
+      $this->_validation_tamu();
+      $data = [
+         'title' => "Tamu",
+      ];
+      if ($this->form_validation->run() == false) {
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/sidebar');
+         $this->load->view('templates/topbar');
+         $this->load->view('data/acara/add_tamu');
+         $this->load->view('templates/footer');
+      } else {
+         $result = $this->bm->add('tamu', $this->_payload_tamu($id));
+         if ($result) {
+            $this->notification->notify_success('data/acara', 'Berhasil menambahkan data');
+         } else {
+            $this->notification->notify_error('data/acara', 'Gagal menambahkan data');
+         }
+      }
+   }
+
    public function edit($id)
    {
       $this->_validation();
@@ -92,6 +114,16 @@ class Acara extends CI_Controller
       }
    }
 
+   public function _payload_tamu($acara_id = null)
+   {
+      $n_tamu = htmlspecialchars($this->input->post('n_tamu'));
+      $payload = [
+         'n_tamu' => $n_tamu,
+         'acara_id' => $acara_id,
+      ];
+      return $payload;
+   }
+
    public function _payload()
    {
       $n_acara = htmlspecialchars($this->input->post('n_acara'));
@@ -108,6 +140,12 @@ class Acara extends CI_Controller
    public function _validation()
    {
       $this->form_validation->set_rules('n_acara', 'Nama', 'required|trim', [
+         'required' => 'Nama harus diisi',
+      ]);
+   }
+   public function _validation_tamu()
+   {
+      $this->form_validation->set_rules('n_tamu', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
    }

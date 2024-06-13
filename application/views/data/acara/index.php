@@ -35,7 +35,15 @@
                         <td><?= $field['n_acara'] ?></td>
                         <td><?= $field['deskripsi'] ?></td>
                         <td><?= $field['tanggal'] ?></td>
-                        <td>ss</td>
+                        <td>
+                           <?php
+                           $tamu = $this->db->get_where('tamu', ['acara_id' => $field['id']])->result_array();
+                           foreach ($tamu as $tm) :
+                           ?>
+                              <li><?= $tm['n_tamu'] ?></li>
+                           <?php endforeach; ?>
+
+                        </td>
                         <td style="width: 100px;">
                            <a href="<?= base_url('data/acara/tamu/' . $field['id']) ?>" class="btn btn-info btn-sm">
                               <i class="fas fa-plus"></i>

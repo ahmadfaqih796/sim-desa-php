@@ -24,11 +24,11 @@
                </select>
                <?= form_error('penduduk_id', '<small class="text-danger pl-3">', '</small>'); ?>
             </div> -->
-            <div class="mb-3">
+            <!-- <div class="mb-3">
                <label for="nik" class="form-label">NIK</label>
                <input type="text" class="form-control <?= form_error('nik') ? 'is-invalid' : '' ?>" id="nik" name="nik" value="<?= set_value('nik') ?>">
                <?= form_error('nik') ?>
-            </div>
+            </div> -->
             <div class="mb-3">
                <label for="n_blt" class="form-label">Nama Penerima BLT</label>
                <input type="text" class="form-control <?= form_error('n_blt') ? 'is-invalid' : '' ?>" id="n_blt" name="n_blt" value="<?= set_value('n_blt') ?>">

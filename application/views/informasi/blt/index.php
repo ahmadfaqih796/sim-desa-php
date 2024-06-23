@@ -25,7 +25,7 @@
                <thead>
                   <tr>
                      <th scope="col">No</th>
-                     <th scope="col">NIK</th>
+                     <!-- <th scope="col">NIK</th> -->
                      <th scope="col">Nama</th>
                      <th scope="col">Alamat</th>
                      <th scope="col">Batch</th>
@@ -42,7 +42,7 @@
                   foreach ($data as $field) : ?>
                      <tr>
                         <th style="width: 50px; text-align: center;"><?= $i ?></th>
-                        <td><?= $field['nik'] ?></td>
+                        <!-- <td><?= $field['nik'] ?></td> -->
                         <td><?= $field['n_blt'] ?></td>
                         <td><?= $field['alamat'] ?></td>
                         <td><?= $field['batch'] ?></td>

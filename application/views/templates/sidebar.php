@@ -83,6 +83,12 @@ $sidebarMenu = array(
             "role" => array(1, 2),
          ),
          array(
+            "url" => "data/acara",
+            "text" => "Acara",
+            "icon" => "ti ti-file",
+            "role" => array(2),
+         ),
+         array(
             "url" => "informasi/schedule",
             "text" => "Jadwal Wirid Akbar",
             "icon" => "ti ti-file",

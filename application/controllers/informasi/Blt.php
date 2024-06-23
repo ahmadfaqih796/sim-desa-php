@@ -51,8 +51,8 @@ class Blt extends CI_Controller
 
       if (!$this->upload->do_upload('file')) {
          $error = array('error' => $this->upload->display_errors());
-         // $this->load->view('informasi/blt/upload', $error);
-         $this->notification->notify_error('informasi/blt/upload', 'Gagal mengupload data');
+         // return print("<pre>" . print_r($error, true) . "</pre>");
+         $this->notification->notify_error('informasi/blt/upload', $error['error']);
       } else {
          $data = $this->upload->data();
          $file = './assets/excel/' . $data['file_name'];

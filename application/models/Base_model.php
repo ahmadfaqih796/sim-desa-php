@@ -44,4 +44,16 @@ class Base_model extends CI_Model
       }
       return $this->db->get($table)->num_rows();
    }
+
+   // for update blt
+   public function get_by_name($table, $name)
+   {
+      return $this->db->get_where($table, ['n_blt' => $name])->row_array();
+   }
+
+   public function update_by_name($table, $name, $data)
+   {
+      $this->db->where('n_blt', $name);
+      return $this->db->update($table, $data);
+   }
 }

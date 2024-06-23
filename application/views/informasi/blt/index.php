@@ -6,6 +6,9 @@
                <h5 class="card-title mb-0"><?= $title ?></h5>
             </div>
             <div class="col-md-6 col-xs-12 d-flex justify-content-end">
+               <a href="<?= base_url('informasi/blt/upload') ?>" class="btn btn-success ms-3">
+                  <i class="fas fa-file-excel"></i> Upload
+               </a>
                <a href="<?= base_url('informasi/blt/add') ?>" class="btn btn-primary ms-3">
                   <i class="fas fa-plus"></i> Tambah
                </a>

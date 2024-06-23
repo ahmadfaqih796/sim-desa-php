@@ -74,13 +74,13 @@ $sidebarMenu = array(
    ),
    array(
       "text" => "Informasi",
-      "role" => array(1),
+      "role" => array(1, 2),
       "submenu" => array(
          array(
             "url" => "informasi/blt",
             "text" => "Penerimaan BLT",
             "icon" => "ti ti-file",
-            "role" => array(1),
+            "role" => array(1, 2),
          ),
          array(
             "url" => "informasi/schedule",

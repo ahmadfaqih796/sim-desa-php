@@ -15,9 +15,11 @@ class Blt extends CI_Controller
 
    public function index()
    {
+      $role = $this->session->userdata('role_id');
       $data = [
          'title' => "Penerimaan BLT",
          'data' => $this->bm->get_all('blt'),
+         'role' => $role
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');

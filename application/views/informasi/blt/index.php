@@ -5,14 +5,16 @@
             <div class="col-md-6 col-xs-12">
                <h5 class="card-title mb-0"><?= $title ?></h5>
             </div>
-            <div class="col-md-6 col-xs-12 d-flex justify-content-end">
-               <a href="<?= base_url('informasi/blt/upload') ?>" class="btn btn-success ms-3">
-                  <i class="fas fa-file-excel"></i> Upload
-               </a>
-               <a href="<?= base_url('informasi/blt/add') ?>" class="btn btn-primary ms-3">
-                  <i class="fas fa-plus"></i> Tambah
-               </a>
-            </div>
+            <?php if ($role == 1) : ?>
+               <div class="col-md-6 col-xs-12 d-flex justify-content-end">
+                  <a href="<?= base_url('informasi/blt/upload') ?>" class="btn btn-success ms-3">
+                     <i class="fas fa-file-excel"></i> Upload
+                  </a>
+                  <a href="<?= base_url('informasi/blt/add') ?>" class="btn btn-primary ms-3">
+                     <i class="fas fa-plus"></i> Tambah
+                  </a>
+               </div>
+            <?php endif ?>
          </div>
       </div>
       <div class="card-body">
@@ -30,7 +32,9 @@
                      <th scope="col">Desa</th>
                      <th scope="col">Kecamatan</th>
                      <th scope="col">Kabupaten</th>
-                     <th scope="col">Action</th>
+                     <?php if ($role == 1) : ?>
+                        <th scope="col">Action</th>
+                     <?php endif ?>
                   </tr>
                </thead>
                <tbody>
@@ -45,11 +49,13 @@
                         <td><?= $field['desa'] ?></td>
                         <td><?= $field['kecamatan'] ?></td>
                         <td><?= $field['kabupaten'] ?></td>
-                        <td style="width: 80px;">
-                           <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
-                              <i class="fas fa-trash"></i>
-                           </button>
-                        </td>
+                        <?php if ($role == 1) : ?>
+                           <td style="width: 80px;">
+                              <button type="button" class="btn btn-danger btn-sm" onclick="confirmDelete(<?= $field['id'] ?>)">
+                                 <i class="fas fa-trash"></i>
+                              </button>
+                           </td>
+                        <?php endif ?>
                      </tr>
                   <?php $i++;
                   endforeach; ?>

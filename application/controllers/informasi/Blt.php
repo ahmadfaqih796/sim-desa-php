@@ -15,7 +15,7 @@ class Blt extends CI_Controller
    {
       $data = [
          'title' => "Penerimaan BLT",
-         'data' => $this->pm->get_all_data('blt'),
+         'data' => $this->bm->get_all('blt'),
       ];
       $this->load->view('templates/header', $data);
       $this->load->view('templates/sidebar');
@@ -84,16 +84,30 @@ class Blt extends CI_Controller
 
    public function _payload()
    {
-      $penduduk_id = htmlspecialchars($this->input->post('penduduk_id'));
+      // $penduduk_id = htmlspecialchars($this->input->post('penduduk_id'));
+      $nik = htmlspecialchars($this->input->post('nik'));
+      $n_blt = htmlspecialchars($this->input->post('n_blt'));
+      $alamat = htmlspecialchars($this->input->post('alamat'));
+      $batch = htmlspecialchars($this->input->post('batch'));
+      $desa = htmlspecialchars($this->input->post('desa'));
+      $kecamatan = htmlspecialchars($this->input->post('kecamatan'));
+      $kabupaten = htmlspecialchars($this->input->post('kabupaten'));
+
       $payload = [
-         'penduduk_id' => $penduduk_id,
+         'nik' => $nik,
+         'n_blt' => $n_blt,
+         'alamat' => $alamat,
+         'batch' => $batch,
+         'desa' => $desa,
+         'kecamatan' => $kecamatan,
+         'kabupaten' => $kabupaten,
       ];
       return $payload;
    }
 
    public function _validation()
    {
-      $this->form_validation->set_rules('penduduk_id', 'Nama', 'required|trim', [
+      $this->form_validation->set_rules('n_blt', 'Nama', 'required|trim', [
          'required' => 'Nama harus diisi',
       ]);
    }
